@@ -1,0 +1,14 @@
+---
+import { getCollection } from 'astro:content';
+import ProjectList from '../islands/ProjectList';
+
+const projects = await getCollection('projects');
+const projectData = projects.map((p) => p.data);
+---
+
+<section id="projects" class="max-w-6xl mx-auto px-6 py-20 border-t border-[var(--border)] scroll-mt-16">
+  <h2 class="section-title">Featured Projects</h2>
+  <p class="max-w-xl mb-10 text-[#aaaaaa]">Real-world applications showcasing full-stack engineering.</p>
+
+  <ProjectList client:visible projects={projectData} />
+</section>

@@ -1,0 +1,66 @@
+---
+import { contact } from '../data/contact';
+---
+
+<header class="fixed top-0 left-0 right-0 z-50 bg-[var(--bg)]/95 backdrop-blur-md border-b border-[var(--border)]">
+  <nav class="max-w-6xl mx-auto px-6 h-20 flex items-center justify-between">
+    <a href="#hero" aria-label="Home" class="block">
+      <div class="w-9 h-9 rounded-full border border-white flex items-center justify-center">
+        <span class="text-[13px] font-bold tracking-[-0.8px] text-white leading-none mt-px">JK</span>
+      </div>
+    </a>
+
+    <div class="hidden md:flex items-center gap-8 text-sm">
+      <a href="#skills" class="nav-link">Skills</a>
+      <a href="#projects" class="nav-link">Projects</a>
+      <a href="#contact" class="nav-link">Contact</a>
+      <a href={contact.github} target="_blank" rel="noopener" class="btn btn-secondary !px-4 !py-2 text-sm">GitHub</a>
+    </div>
+
+    <button id="mobile-btn" class="md:hidden p-2" aria-label="Menu">
+      <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+      </svg>
+    </button>
+  </nav>
+
+  <div id="mobile-menu" class="hidden md:hidden border-t border-[var(--border)] bg-[var(--bg)] px-6 py-6 text-lg">
+    <div class="flex flex-col gap-4">
+      <a href="#skills" class="nav-link">Skills</a>
+      <a href="#projects" class="nav-link">Projects</a>
+      <a href="#contact" class="nav-link">Contact</a>
+      <a href={contact.github} target="_blank" class="btn btn-secondary w-full justify-center mt-2">GitHub</a>
+    </div>
+  </div>
+</header>
+
+<script>
+  const btn = document.getElementById('mobile-btn');
+  const menu = document.getElementById('mobile-menu');
+
+  btn?.addEventListener('click', () => {
+    menu?.classList.toggle('hidden');
+  });
+
+  const navLinks = document.querySelectorAll('.nav-link');
+  const sections = document.querySelectorAll('section[id]');
+
+  const observer = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          const id = entry.target.getAttribute('id');
+          navLinks.forEach((link) => {
+            link.classList.remove('active');
+            if (link.getAttribute('href') === `#${id}`) {
+              link.classList.add('active');
+            }
+          });
+        }
+      });
+    },
+    { rootMargin: '-35% 0px -50% 0px', threshold: 0.1 }
+  );
+
+  sections.forEach((section) => observer.observe(section));
+</script>

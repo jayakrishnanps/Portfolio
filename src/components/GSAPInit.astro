@@ -1,0 +1,12 @@
+---
+---
+
+<script>
+  import { initGSAP } from '../lib/gsap';
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initGSAP);
+  } else {
+    initGSAP();
+  }
+</script>

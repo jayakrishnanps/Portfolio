@@ -1,0 +1,32 @@
+---
+import { contact } from '../data/contact';
+import ContactForm from '../islands/ContactForm';
+---
+
+<section id="contact" class="max-w-6xl mx-auto px-6 py-20 border-t border-[var(--border)] scroll-mt-16">
+  <div class="grid lg:grid-cols-5 gap-x-12 gap-y-10">
+    <div class="lg:col-span-2">
+      <h2 class="section-title tracking-[-1.5px]">Let's Connect</h2>
+      <p class="mb-10 max-w-xs text-[#aaaaaa]">Open to full-time roles and interesting collaborations.</p>
+
+      <div class="space-y-8 text-sm">
+        <div>
+          <div class="text-[var(--text-muted)] text-[10px] tracking-[2px] mb-1">EMAIL</div>
+          <a href={`mailto:${contact.email}`} class="text-xl hover:underline underline-offset-4">{contact.email}</a>
+        </div>
+        <div>
+          <div class="text-[var(--text-muted)] text-[10px] tracking-[2px] mb-1">LINKEDIN</div>
+          <a href={contact.linkedin} target="_blank" rel="noopener" class="text-xl hover:underline underline-offset-4">jayakrishnan-ps</a>
+        </div>
+        <div>
+          <div class="text-[var(--text-muted)] text-[10px] tracking-[2px] mb-1">PHONE</div>
+          <a href={`tel:${contact.phone.replace(/\s/g,'')}`} class="text-xl hover:underline underline-offset-4">{contact.phone}</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="lg:col-span-3">
+      <ContactForm client:visible />
+    </div>
+  </div>
+</section>

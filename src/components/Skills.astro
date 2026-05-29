@@ -1,0 +1,11 @@
+---
+import SkillsFilter from '../islands/SkillsFilter';
+import { skills } from '../data/skills';
+---
+
+<section id="skills" class="max-w-6xl mx-auto px-6 py-20 border-t border-[var(--border)] scroll-mt-16">
+  <h2 class="section-title">Skills & Expertise</h2>
+  <p class="max-w-xl mb-8 text-[#aaaaaa]">Technologies refined through real-world full-stack projects.</p>
+
+  <SkillsFilter client:visible skills={skills} />
+</section>
