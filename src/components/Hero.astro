@@ -1,13 +1,29 @@
 ---
+import HeroName from '../islands/HeroName.tsx';
 ---
 
 <section id="hero" class="min-h-[100dvh] flex items-center pt-20">
-  <div class="max-w-5xl mx-auto px-6 pb-20">
-    <h1 class="text-[64px] md:text-[88px] font-bold tracking-[-5.5px] leading-[0.86] mb-10">
-      JAYAKRISHNAN<br />P S
-    </h1>
+  <div class="max-w-5xl mx-auto px-6 pb-20 flex flex-col items-center text-center">
+    <!-- Stable layout: invisible sizer always dictates height (main font).
+         Live animated version is absolutely positioned on top.
+         This guarantees the buttons below never shift vertically. -->
+    <div class="name-container relative">
+      <!-- Sizer: invisible but in normal flow. It forces the exact single-line height
+           and prevents any wrapping or vertical collapse during animation. -->
+      <h1
+        class="hero-name tracking-[-3.75px] md:tracking-[-5px] leading-[0.86] text-[clamp(2.4rem,8.4vw,5.4rem)] invisible pointer-events-none select-none whitespace-nowrap"
+        aria-hidden="true"
+      >
+        Jayakrishnan PS
+      </h1>
 
-    <div class="flex flex-wrap items-center gap-4">
+      <!-- Live animated version - taken completely out of flow -->
+      <div class="absolute inset-0 flex items-center justify-center">
+        <HeroName client:load />
+      </div>
+    </div>
+
+    <div class="flex flex-wrap items-center justify-center gap-4 mt-9 md:mt-10">
       <a href="#projects" class="btn btn-primary text-sm px-9 py-3.5 tracking-[0.5px]">VIEW PROJECTS</a>
       <a href="#contact" class="btn btn-secondary text-sm px-9 py-3.5 tracking-[0.5px]">GET IN TOUCH</a>
     </div>
