@@ -1,37 +1,13 @@
 ---
-import HeroName from '../islands/HeroName.tsx';
 ---
 
 <section id="hero" class="min-h-[100dvh] flex items-center pt-20">
-  <div class="max-w-5xl mx-auto px-6 pb-20 flex flex-col items-center text-center">
-    <!-- 
-      Stable layout container using relative + absolute overlay technique.
-      - The invisible sizer h1 (final main font only, no animation) is in normal flow and 
-        dictates the exact, constant height at all times.
-      - The live animated name is positioned absolute, completely out of flow.
-      - Any internal font-metric changes or settle transforms inside the animation 
-        cannot affect the container height or anything below it.
-      - Animation logic in HeroName.tsx remains 100% unchanged.
-    -->
-    <div class="name-container relative w-full whitespace-nowrap">
-      <!-- Sizer: always renders in the final main font with identical styles. 
-           Provides rock-solid height for the entire animation sequence, including 
-           the one-by-one sequential letter locking phase. -->
-      <h1
-        class="hero-name tracking-[-3.75px] md:tracking-[-5px] leading-[0.86] text-[clamp(2.4rem,8.4vw,5.4rem)] invisible pointer-events-none select-none whitespace-nowrap"
-        aria-hidden="true"
-      >
-        Jayakrishnan PS
-      </h1>
+  <div class="max-w-5xl mx-auto px-6 pb-20">
+    <h1 class="text-[64px] md:text-[88px] font-bold tracking-[-5.5px] leading-[0.86] mb-10">
+      JAYAKRISHNAN<br />P S
+    </h1>
 
-      <!-- Live animated version: taken out of document flow entirely so its 
-           per-letter font changes and settle animations produce zero layout shift. -->
-      <div class="absolute inset-0 flex items-center justify-center whitespace-nowrap">
-        <HeroName client:load />
-      </div>
-    </div>
-
-    <div class="flex flex-wrap items-center justify-center gap-4 mt-9 md:mt-10">
+    <div class="flex flex-wrap items-center gap-4">
       <a href="#projects" class="btn btn-primary text-sm px-9 py-3.5 tracking-[0.5px]">VIEW PROJECTS</a>
       <a href="#contact" class="btn btn-secondary text-sm px-9 py-3.5 tracking-[0.5px]">GET IN TOUCH</a>
     </div>
