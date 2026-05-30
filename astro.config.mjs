@@ -4,7 +4,7 @@ import tailwindcss from '@tailwindcss/vite';
 
 export default defineConfig({
   site: 'https://jayakrishnanps.github.io',
-  base: '/portfolio',
+  base: '/Portfolio',
   integrations: [react()],
   output: 'static',
   vite: {
