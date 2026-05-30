@@ -19,8 +19,7 @@ jobs:
 
       - name: Install, build, and upload Astro site
         uses: withastro/action@v6
-        with:
-          path: ./Astro   # Important: Astro project is in subfolder
+        # No path specified = Astro project is at the repository root
 
   deploy:
     needs: build
