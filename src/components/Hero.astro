@@ -2,8 +2,9 @@
 import HeroName from '../islands/HeroName.tsx';
 ---
 
-<section id="hero" class="min-h-[100dvh] flex items-center pt-20">
-  <div class="max-w-5xl mx-auto px-6 pb-20 flex flex-col items-center text-center">
+<section id="hero" class="relative min-h-[100dvh] flex items-center pt-20">
+  <img src="https://res.cloudinary.com/dvfrakfvm/image/upload/q_auto/f_auto/v1776762471/Untitled_zxaj6y.png" class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[80vw] max-w-none opacity-50 -z-10 pointer-events-none" alt="Background Graphic" style="opacity: 0.15;" />
+  <div class="relative z-10 max-w-5xl mx-auto px-6 pb-20 flex flex-col items-center text-center">
     <!-- Stable layout: invisible sizer always dictates height (main font).
          Live animated version is absolutely positioned on top.
          This guarantees the buttons below never shift vertically. -->
