@@ -1,12 +1,12 @@
-import React, { useEffect, useRef } from 'react';
+import React, { useEffect, useRef } from "react";
 
 const HeroName: React.FC = () => {
-  const name = 'Jayakrishnan PS';
-  const chars = name.split('');
+  const name = "Jayakrishnan PS";
+  const chars = name.split("");
   const letterRefs = useRef<(HTMLSpanElement | null)[]>([]);
 
   useEffect(() => {
-    const mediaQuery = window.matchMedia('(prefers-reduced-motion: reduce)');
+    const mediaQuery = window.matchMedia("(prefers-reduced-motion: reduce)");
     if (mediaQuery.matches) {
       return;
     }
@@ -19,7 +19,7 @@ const HeroName: React.FC = () => {
       '"Courier New", Courier, "Lucida Console", monospace',
       '"Arial Black", "Helvetica Black", Arial, sans-serif',
       'Impact, Haettenschweiler, "Arial Black", sans-serif',
-      'Verdana, Geneva, Tahoma, sans-serif',
+      "Verdana, Geneva, Tahoma, sans-serif",
       '"Trebuchet MS", "Lucida Sans", sans-serif',
     ];
 
@@ -36,7 +36,8 @@ const HeroName: React.FC = () => {
       scrambleIntervalId = window.setInterval(() => {
         chars.forEach((_, i) => {
           if (settled.has(i)) return;
-          const font = scrambleFonts[Math.floor(Math.random() * scrambleFonts.length)];
+          const font =
+            scrambleFonts[Math.floor(Math.random() * scrambleFonts.length)];
           const span = letterRefs.current[i];
           if (span) {
             span.style.fontFamily = font;
@@ -63,7 +64,7 @@ const HeroName: React.FC = () => {
           const span = letterRefs.current[current];
           if (span) {
             span.style.fontFamily = mainFont;
-            span.classList.add('settled');
+            span.classList.add("settled");
           }
           settled.add(current);
           current += 1;
@@ -77,7 +78,8 @@ const HeroName: React.FC = () => {
 
     return () => {
       window.clearTimeout(startTimeoutId);
-      if (scrambleIntervalId !== undefined) window.clearInterval(scrambleIntervalId);
+      if (scrambleIntervalId !== undefined)
+        window.clearInterval(scrambleIntervalId);
       if (settleTimerId !== undefined) window.clearTimeout(settleTimerId);
     };
   }, []);
@@ -96,7 +98,7 @@ const HeroName: React.FC = () => {
           style={{ fontFamily: mainFont }}
           className="hero-letter"
         >
-          {char === ' ' ? '\u00A0' : char}
+          {char === " " ? "\u00A0" : char}
         </span>
       ))}
     </h1>

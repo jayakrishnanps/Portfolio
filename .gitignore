@@ -39,3 +39,24 @@ temp
 
 # Obsidian development notes
 audit-clean-code-2026.md
+
+# Added by code-review-graph
+.code-review-graph/
+
+# MCP and AI coding assistant local configs
+.mcp.json
+.opencode.json
+.claude/
+.cursor/
+.gemini/
+.qoder/
+
+# AI Assistant Instructions (Code Review Graph)
+AGENTS.md
+CLAUDE.md
+GEMINI.md
+QODER.md
+.cursorrules
+.windsurfrules
+.github/code-review-graph.instruction.md
+.kiro/

@@ -1,17 +1,16 @@
-import React, { useState } from 'react';
-import type { Skill } from '../data/skills';
-import { skillCategories, type SkillCategory } from '../data/skills';
+import React, { useState } from "react";
+import type { Skill } from "../data/skills";
+import { skillCategories, type SkillCategory } from "../data/skills";
 
 interface Props {
   skills: Skill[];
 }
 
 export default function SkillsFilter({ skills }: Props) {
-  const [active, setActive] = useState<SkillCategory>('All');
+  const [active, setActive] = useState<SkillCategory>("All");
 
-  const filtered = active === 'All' 
-    ? skills 
-    : skills.filter((s) => s.category === active);
+  const filtered =
+    active === "All" ? skills : skills.filter((s) => s.category === active);
 
   return (
     <div>
@@ -22,8 +21,8 @@ export default function SkillsFilter({ skills }: Props) {
             onClick={() => setActive(cat)}
             className={`px-5 py-1.5 rounded-full text-sm font-medium transition-all border ${
               active === cat
-                ? 'bg-white text-black border-white'
-                : 'bg-[var(--surface-2)] border-[var(--border)] hover:border-[#444444]'
+                ? "bg-white text-black border-white"
+                : "bg-[var(--surface-2)] border-[var(--border)] hover:border-[#444444]"
             }`}
           >
             {cat}
@@ -33,14 +32,14 @@ export default function SkillsFilter({ skills }: Props) {
 
       <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
         {filtered.map((skill) => (
-          <div key={skill.name} className="skill-pill flex flex-col gap-2.5 py-4">
-            <div className="flex justify-between items-baseline">
-              <span className="font-semibold">{skill.name}</span>
-              <span className="text-xs text-[var(--text-muted)] tabular-nums">{skill.level}%</span>
+          <div key={skill.name} className="skill-pill group flex flex-col gap-2.5 py-4">
+            <div className="flex justify-between items-baseline mb-2">
+              <span className="font-extrabold tracking-widest uppercase">{skill.name}</span>
+              <span className="text-xs font-bold tabular-nums opacity-70">{skill.level}%</span>
             </div>
-            <div className="h-1.5 bg-[var(--surface-2)] rounded-full overflow-hidden">
+            <div className="h-3 overflow-hidden w-full relative bg-[#222] border border-[#444] group-hover:bg-[#e5e5e5] group-hover:border-[#ccc] transition-colors">
               <div
-                className="skill-bar h-full bg-white rounded-full"
+                className="h-full bg-white group-hover:bg-black transition-colors"
                 data-level={skill.level}
                 style={{ width: `${skill.level}%` }}
               />

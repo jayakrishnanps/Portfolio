@@ -4,11 +4,6 @@ import Nav from '../components/Nav.astro';
 import GSAPInit from '../components/GSAPInit.astro';
 import { contact } from '../data/contact';
 
-export interface Props {
-  title?: string;
-  description?: string;
-}
-
 const {
   title = `${contact.name} | Full-Stack Developer`,
   description = "Portfolio of Jayakrishnan P S — Full-Stack Developer building production-grade web applications.",
@@ -30,26 +25,11 @@ const {
   </head>
   <body class="antialiased">
     <div id="scroll-progress" style="width: 0%"></div>
-
     <Nav />
-
     <main>
       <slot />
     </main>
-
-    <footer class="border-t border-[var(--border)] py-10 mt-16 text-sm text-[var(--text)]">
-      <div class="max-w-6xl mx-auto px-6 flex flex-col md:flex-row justify-between items-center gap-4">
-        <p>© {new Date().getFullYear()} {contact.name}. Built with Astro 6.</p>
-        <div class="flex gap-5">
-          <a href={contact.github} target="_blank" rel="noopener" class="text-[var(--text-muted)] hover:text-[var(--text)]">GitHub</a>
-          <a href={contact.linkedin} target="_blank" rel="noopener" class="text-[var(--text-muted)] hover:text-[var(--text)]">LinkedIn</a>
-          <a href={`mailto:${contact.email}`} class="text-[var(--text-muted)] hover:text-[var(--text)]">Email</a>
-        </div>
-      </div>
-    </footer>
-
     <GSAPInit />
-
     <script>
       const progress = document.getElementById('scroll-progress');
       const updateProgress = () => {
