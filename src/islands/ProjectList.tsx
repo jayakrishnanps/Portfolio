@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 
+
 interface Project {
   title: string;
   subtitle?: string;
@@ -68,9 +69,8 @@ export default function ProjectList({ projects }: Props) {
         >
           <div
             key={selected.title}
-            className="bg-black border-2 border-white max-w-3xl w-full max-h-[92dvh] overflow-y-auto flex flex-col p-0 relative"
+            className="bg-black border-2 border-white max-w-3xl w-full max-h-[92dvh] overflow-y-auto flex flex-col p-0 relative shadow-[12px_12px_0px_white]"
             onClick={(e) => e.stopPropagation()}
-            style={{ boxShadow: "12px 12px 0px rgba(255,255,255,1)" }}
           >
             <div className="sticky top-0 flex justify-between items-start bg-black border-b-2 border-white px-8 py-6 z-20">
               <div>
@@ -97,7 +97,7 @@ export default function ProjectList({ projects }: Props) {
               </p>
 
               <div>
-                <div className="uppercase text-xs tracking-widest text-[var(--text-muted)] mb-3">
+                <div className="uppercase text-xs tracking-widest text-[#888] mb-3">
                   Tech Stack
                 </div>
                 <div className="flex flex-wrap gap-2">
@@ -111,7 +111,7 @@ export default function ProjectList({ projects }: Props) {
 
               {selected.features && (
                 <div>
-                  <div className="uppercase text-xs tracking-widest text-[var(--text-muted)] mb-3">
+                  <div className="uppercase text-xs tracking-widest text-[#888] mb-3">
                     Key Features
                   </div>
                   <ul className="grid sm:grid-cols-2 gap-x-8 gap-y-1 list-disc pl-5 text-[15px]">

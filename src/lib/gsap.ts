@@ -41,6 +41,7 @@ export function initGSAP() {
           toggleActions: "play none none reverse",
         },
         delay: Math.min(index * 0.02, 0.1),
+        clearProps: "transform",
       },
     );
   });
@@ -60,6 +61,7 @@ export function initGSAP() {
           trigger: "#projects",
           start: "top 70%",
         },
+        clearProps: "transform",
       },
     );
   }
