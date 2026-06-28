@@ -21,8 +21,8 @@ export default function SkillsFilter({ skills }: Props) {
             onClick={() => setActive(cat)}
             className={`px-5 py-1.5 rounded-full text-sm font-medium transition-all border ${
               active === cat
-                ? "bg-white text-black border-white"
-                : "bg-[var(--surface-2)] border-[var(--border)] hover:border-[#444444]"
+                ? "bg-[var(--accent)] text-white border-[var(--accent)] shadow-[3px_3px_0px_#00C853]"
+                : "bg-[var(--surface-2)] border-[var(--border)] text-[var(--text-muted)] hover:border-[var(--accent)] hover:text-[var(--text)]"
             }`}
           >
             {cat}
@@ -35,11 +35,11 @@ export default function SkillsFilter({ skills }: Props) {
           <div key={skill.name} className="skill-pill group flex flex-col gap-2.5 py-4">
             <div className="flex justify-between items-baseline mb-2">
               <span className="font-extrabold tracking-widest uppercase">{skill.name}</span>
-              <span className="text-xs font-bold tabular-nums opacity-70">{skill.level}%</span>
+              <span className="text-xs font-bold tabular-nums text-[var(--green)]">{skill.level}%</span>
             </div>
-            <div className="h-3 overflow-hidden w-full relative bg-[#222] border border-[#444] group-hover:bg-[#e5e5e5] group-hover:border-[#ccc] transition-colors">
+            <div className="h-3 overflow-hidden w-full relative bg-[var(--surface-2)] border border-[var(--border)] group-hover:border-[var(--accent)] transition-colors rounded-full">
               <div
-                className="h-full bg-white group-hover:bg-black transition-colors"
+                className="h-full bg-[var(--accent)] transition-colors rounded-full"
                 data-level={skill.level}
                 style={{ width: `${skill.level}%` }}
               />

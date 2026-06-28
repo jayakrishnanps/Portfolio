@@ -11,8 +11,7 @@ const HeroName: React.FC = () => {
       return;
     }
 
-    const mainFont =
-      'system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif';
+    const mainFont = '"Righteous", system-ui, sans-serif';
 
     const scrambleFonts = [
       'Georgia, "Times New Roman", Times, serif',
@@ -84,8 +83,7 @@ const HeroName: React.FC = () => {
     };
   }, []);
 
-  const mainFont =
-    'system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif';
+  const mainFont = '"Righteous", system-ui, sans-serif';
 
   return (
     <h1 className="hero-name tracking-[-3.75px] md:tracking-[-5px] leading-[0.86] text-[clamp(2.4rem,8.4vw,5.4rem)]">

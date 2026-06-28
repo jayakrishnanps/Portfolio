@@ -55,8 +55,8 @@ export default function ProjectList({ projects }: Props) {
                 ))}
               </div>
             </div>
-            <div className="text-sm font-medium text-[var(--accent)] group-hover:underline mt-auto">
-              View details →
+            <div className="text-sm font-medium text-[var(--accent)] group-hover:text-[var(--green)] group-hover:underline mt-auto transition-colors">
+              View details ✦
             </div>
           </article>
         ))}
@@ -64,40 +64,40 @@ export default function ProjectList({ projects }: Props) {
 
       {open && selected && (
         <div
-          className="fixed inset-0 z-[200] flex items-center justify-center bg-black/90 p-4 transition-all"
+          className="fixed inset-0 z-[200] flex items-center justify-center bg-[#1C0A18]/95 p-4 transition-all backdrop-blur-sm"
           onClick={close}
         >
           <div
             key={selected.title}
-            className="bg-black border-2 border-white max-w-3xl w-full max-h-[92dvh] overflow-y-auto flex flex-col p-0 relative shadow-[12px_12px_0px_white]"
+            className="bg-[var(--bg)] border-2 border-[var(--accent)] rounded-2xl max-w-3xl w-full max-h-[92dvh] overflow-y-auto flex flex-col p-0 relative shadow-[8px_8px_0px_#00C853]"
             onClick={(e) => e.stopPropagation()}
           >
-            <div className="sticky top-0 flex justify-between items-start bg-black border-b-2 border-white px-8 py-6 z-20">
+            <div className="sticky top-0 flex justify-between items-start bg-[var(--bg)] border-b-2 border-[var(--accent)] rounded-t-2xl px-8 py-6 z-20">
               <div>
-                <h3 className="text-3xl font-extrabold tracking-tight text-white uppercase">
+                <h3 className="text-3xl font-extrabold tracking-tight text-[var(--text)] uppercase">
                   {selected.title}
                 </h3>
                 {selected.subtitle && (
-                  <p className="text-[#888] font-bold mt-1 uppercase text-sm tracking-wide">
+                  <p className="text-[var(--text-muted)] font-bold mt-1 uppercase text-sm tracking-wide">
                     {selected.subtitle}
                   </p>
                 )}
               </div>
               <button
                 onClick={close}
-                className="text-4xl leading-none text-white hover:scale-125 transition-transform duration-200 transform origin-center"
+                className="text-4xl leading-none text-[var(--text)] hover:text-[var(--accent)] hover:scale-125 transition-all duration-200 transform origin-center"
               >
                 &times;
               </button>
             </div>
 
-            <div className="p-8 space-y-8 flex-1 bg-black">
-              <p className="text-lg text-white font-medium leading-relaxed">
+            <div className="p-8 space-y-8 flex-1 bg-[var(--bg)]">
+              <p className="text-lg text-[var(--text)] font-medium leading-relaxed">
                 {selected.longDescription || selected.description}
               </p>
 
               <div>
-                <div className="uppercase text-xs tracking-widest text-[#888] mb-3">
+                <div className="uppercase text-xs tracking-widest text-[var(--text-muted)] mb-3">
                   Tech Stack
                 </div>
                 <div className="flex flex-wrap gap-2">
@@ -111,10 +111,10 @@ export default function ProjectList({ projects }: Props) {
 
               {selected.features && (
                 <div>
-                  <div className="uppercase text-xs tracking-widest text-[#888] mb-3">
+                  <div className="uppercase text-xs tracking-widest text-[var(--text-muted)] mb-3">
                     Key Features
                   </div>
-                  <ul className="grid sm:grid-cols-2 gap-x-8 gap-y-1 list-disc pl-5 text-[15px]">
+                  <ul className="grid sm:grid-cols-2 gap-x-8 gap-y-1 list-disc pl-5 text-[15px] marker:text-[var(--green)]">
                     {selected.features.map((f, i) => (
                       <li key={i}>{f}</li>
                     ))}
@@ -123,7 +123,7 @@ export default function ProjectList({ projects }: Props) {
               )}
             </div>
 
-            <div className="sticky bottom-0 bg-black border-t-2 border-white p-6 flex gap-3 flex-wrap mt-auto z-10">
+            <div className="sticky bottom-0 bg-[var(--bg)] border-t-2 border-[var(--accent)] rounded-b-2xl p-6 flex gap-3 flex-wrap mt-auto z-10">
               {selected.links?.github && (
                 <a
                   href={selected.links.github}

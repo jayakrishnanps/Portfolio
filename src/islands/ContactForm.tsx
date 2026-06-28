@@ -31,7 +31,7 @@ export default function ContactForm() {
   if (status === "success") {
     return (
       <div className="card text-center py-10 border-[var(--accent)]/30">
-        <div className="text-4xl mb-4">✓</div>
+        <div className="text-4xl mb-4 text-[var(--green)]">✓</div>
         <h3 className="text-xl font-semibold mb-2">Message received.</h3>
         <p className="text-[var(--text-muted)]">
           Thank you. I'll reply within 48 hours.
@@ -52,7 +52,7 @@ export default function ContactForm() {
             className="form-input"
           />
           {errors.name && (
-            <p className="text-red-400 text-xs mt-1">{errors.name}</p>
+            <p className="text-[var(--text-error)] text-xs mt-1">{errors.name}</p>
           )}
         </div>
         <div>
@@ -64,7 +64,7 @@ export default function ContactForm() {
             className="form-input"
           />
           {errors.email && (
-            <p className="text-red-400 text-xs mt-1">{errors.email}</p>
+            <p className="text-[var(--text-error)] text-xs mt-1">{errors.email}</p>
           )}
         </div>
       </div>
@@ -78,7 +78,7 @@ export default function ContactForm() {
           className="form-input resize-y"
         />
         {errors.message && (
-          <p className="text-red-400 text-xs mt-1">{errors.message}</p>
+          <p className="text-[var(--text-error)] text-xs mt-1">{errors.message}</p>
         )}
       </div>
 
