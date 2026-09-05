@@ -1,15 +1,11 @@
 ---
 import '../styles/global.css';
 import Nav from '../components/Nav.astro';
-import GSAPInit from '../components/GSAPInit.astro';
-import { contact } from '../data/contact';
-
 const {
-  title = `${contact.name} | Full-Stack Developer`,
-  description = "Portfolio of Jayakrishnan P S — Full-Stack Developer building production-grade web applications.",
+  title = 'Full-Stack Developer — React, Next.js & Django',
+  description = 'Full-stack development with React, Next.js, Django, and Node.js. Projects in live learning, inventory management, and clinical workflows, with REST APIs and AI integration.',
 } = Astro.props;
 ---
-
 <!doctype html>
 <html lang="en">
   <head>
@@ -17,31 +13,23 @@ const {
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>{title}</title>
     <meta name="description" content={description} />
-    <meta name="author" content={contact.name} />
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="icon" type="image/svg+xml" href={`${import.meta.env.BASE_URL.replace(/\/$/, '')}/favicon.svg`} />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Righteous&display=swap" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Plus+Jakarta+Sans:wght@400;500;600;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet" />
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
     <meta property="og:type" content="website" />
   </head>
-  <body class="antialiased">
-    <div id="scroll-progress" style="width: 0%"></div>
-    <Nav />
-    <main class="poster-frame">
-      <slot />
-    </main>
-    <GSAPInit />
-    <div class="noise-overlay" aria-hidden="true"></div>
-    <script>
-      const progress = document.getElementById('scroll-progress');
-      const updateProgress = () => {
-        const scrolled = window.scrollY;
-        const height = document.documentElement.scrollHeight - window.innerHeight;
-        if (progress) progress.style.width = `${(scrolled / height) * 100}%`;
-      };
-      window.addEventListener('scroll', updateProgress, { passive: true });
-    </script>
+  <body>
+    <a class="skip-link" href="#main">Skip to content</a>
+    <div class="folio">
+      <Nav />
+      <main id="main" tabindex="-1"><slot /></main>
+      <footer class="site-footer">
+        <p>© {new Date().getFullYear()}</p>
+        <a class="text-link" href="#hero">Back to top <span aria-hidden="true">↑</span></a>
+      </footer>
+    </div>
   </body>
 </html>

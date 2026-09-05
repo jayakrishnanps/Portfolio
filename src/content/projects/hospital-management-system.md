@@ -1,20 +1,19 @@
 ---
 title: "Hospital Management System"
-subtitle: "Healthcare Platform"
-description: "Full-stack healthcare management system"
-longDescription: "A robust full-stack Hospital Management System designed to digitize and streamline clinical and administrative workflows. The platform handles patient registration, appointment scheduling, electronic health records (EHR), and real-time updates across departments. The backend was architected for high reliability with proper indexing, transaction safety, and WebSocket-powered live data synchronization."
-tech: ["Next.js", "Node.js", "Express", "MongoDB", "TypeScript"]
+subtitle: "Clinical Operations Platform"
+description: "Django application for appointments, patient records, medications, and treatments."
+longDescription: "Built a Python/Django application for daily clinical operations. Implemented appointment management and patient records covering medications and treatments, with real-time data updates for doctors and staff."
+tech: ["Python", "Django"]
 features:
-  - "Complete patient records and history management"
-  - "Smart appointment scheduling with conflict detection"
-  - "Real-time data synchronization across clients"
-  - "Role-based dashboards for doctors, nurses, and admins"
-  - "Comprehensive REST + WebSocket API layer"
+  - "Appointment management"
+  - "Patient records"
+  - "Medication and treatment tracking"
+  - "Real-time data updates for clinical staff"
 role: "Full-Stack Developer"
-year: "2024"
+year: "2023"
 category: "Full-Stack"
 links:
   github: "https://github.com/jayakrishnanps"
 ---
 
-The Hospital Management System demonstrates strong backend fundamentals: normalized MongoDB schemas, carefully designed Express middleware for auth and validation, and a modern Next.js interface. Real-time updates were implemented using Socket.io for instant visibility of appointment changes and patient status.
+Built a Python/Django application for clinical appointment management, patient records, and medication and treatment tracking. Supported real-time data updates for doctors and staff.

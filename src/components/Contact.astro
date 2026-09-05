@@ -2,34 +2,20 @@
 import { contact } from '../data/contact';
 import ContactForm from '../islands/ContactForm';
 ---
-
-<section id="contact" class="max-w-6xl mx-auto px-6 py-20 scroll-mt-16">
-  <div class="section-divider">
-    <div class="section-divider-diamond"></div>
+<section id="contact" class="folio-section contact-section" aria-labelledby="contact-title">
+  <div class="contact-intro">
+    <p class="eyebrow" aria-hidden="true">03</p>
+    <h2 id="contact-title">Contact</h2>
+    <p class="contact-description">For engineering roles or project inquiries, include the scope, technical requirements, and timeline.</p>
+    <a class="contact-email" href={`mailto:${contact.email}`}>{contact.email} <span aria-hidden="true">↗</span></a>
+    <div class="contact-socials">
+      <a class="text-link" href={contact.linkedin} target="_blank" rel="noopener noreferrer">LinkedIn <span aria-hidden="true">↗</span></a>
+      <a class="text-link" href={contact.github} target="_blank" rel="noopener noreferrer">GitHub <span aria-hidden="true">↗</span></a>
+    </div>
+    <a class="contact-phone" href={`tel:${contact.phone.replace(/\s/g, '')}`}>{contact.phone}</a>
   </div>
-  <div class="grid lg:grid-cols-5 gap-x-12 gap-y-10">
-    <div class="lg:col-span-2">
-      <h2 class="section-title tracking-[-1.5px]">Let's Connect</h2>
-      <p class="mb-10 max-w-xs text-[var(--text-muted)]">Open to full-time roles and interesting collaborations.</p>
-
-      <div class="space-y-8 text-sm">
-        <div>
-          <div class="contact-label text-[var(--text-muted)] text-[10px] tracking-[2px] mb-1">EMAIL</div>
-          <a href={`mailto:${contact.email}`} class="text-xl hover:text-[var(--accent)] transition-colors underline-offset-4 hover:underline">{contact.email}</a>
-        </div>
-        <div>
-          <div class="contact-label text-[var(--text-muted)] text-[10px] tracking-[2px] mb-1">LINKEDIN</div>
-          <a href={contact.linkedin} target="_blank" rel="noopener" class="text-xl hover:text-[var(--accent)] transition-colors underline-offset-4 hover:underline">jayakrishnan-ps</a>
-        </div>
-        <div>
-          <div class="contact-label text-[var(--text-muted)] text-[10px] tracking-[2px] mb-1">PHONE</div>
-          <a href={`tel:${contact.phone.replace(/\s/g,'')}`} class="text-xl hover:text-[var(--accent)] transition-colors underline-offset-4 hover:underline">{contact.phone}</a>
-        </div>
-      </div>
-    </div>
-
-    <div class="lg:col-span-3">
-      <ContactForm client:visible />
-    </div>
+  <div class="letter-card">
+    <div class="letter-heading"><span class="mono">Send an inquiry</span><span class="letter-symbol" aria-hidden="true">↗</span></div>
+    <ContactForm client:load />
   </div>
 </section>

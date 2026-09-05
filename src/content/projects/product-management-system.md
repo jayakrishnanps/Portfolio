@@ -1,20 +1,18 @@
 ---
 title: "Product Management System"
-subtitle: "Full-Stack Inventory Platform"
-description: "Full-stack inventory management system for products"
-longDescription: "A complete full-stack inventory and product management platform built for small-to-medium businesses. The system provides real-time stock tracking, intuitive product CRUD operations, low-stock alerts, and an intelligent product suggestion engine. The suggestion feature analyzes historical usage patterns and recommends complementary or alternative products to improve sales and reduce waste."
-tech: ["Next.js", "Node.js", "Express", "MongoDB", "TypeScript"]
+subtitle: "Inventory Management Platform"
+description: "Inventory management with usage-based product recommendations for small-business decisions."
+longDescription: "Developed an inventory management application using Next.js, Node.js, Express, and MongoDB. Implemented product recommendations based on usage patterns to support small-business inventory decisions."
+tech: ["Next.js", "Node.js", "Express", "MongoDB"]
 features:
-  - "Real-time inventory tracking and alerts"
-  - "Advanced product catalog with search and filters"
-  - "Usage-based intelligent product suggestion engine"
-  - "Role-based access and audit logging"
-  - "REST API + responsive dashboard UI"
+  - "Product inventory management"
+  - "Usage-pattern analysis"
+  - "Product recommendations for inventory decisions"
 role: "Full-Stack Developer"
-year: "2023 – 2024"
+year: "2024"
 category: "Full-Stack"
 links:
   github: "https://github.com/jayakrishnanps"
 ---
 
-The Product Management System showcases clean architecture with a well-designed Express API layer, Mongoose schemas, and a polished Next.js frontend featuring optimistic UI updates. The standout feature is the custom recommendation algorithm that processes product affinity and seasonal usage signals.
+Developed a Next.js inventory application with Node.js, Express, and MongoDB. Implemented usage-based product recommendations to support small-business decisions.

@@ -1,17 +1,12 @@
 ---
 import { getCollection } from 'astro:content';
 import ProjectList from '../islands/ProjectList';
-
-const projects = await getCollection('projects');
-const projectData = projects.map((p) => p.data);
+const projectOrder = ['tutorva', 'product-management-system', 'hospital-management-system'];
+const projects = (await getCollection('projects')).sort((a, b) => projectOrder.indexOf(a.slug) - projectOrder.indexOf(b.slug));
 ---
-
-<section id="projects" class="max-w-6xl mx-auto px-6 py-20 scroll-mt-16">
-  <div class="section-divider">
-    <div class="section-divider-diamond"></div>
+<section id="projects" class="folio-section work-section" aria-labelledby="work-title">
+  <div class="section-heading">
+    <div><p class="eyebrow" aria-hidden="true">01</p><h2 id="work-title">Projects</h2></div>
   </div>
-  <h2 class="section-title">Featured Projects</h2>
-  <p class="max-w-xl mb-10 text-[var(--text-muted)]">Real-world applications showcasing full-stack engineering.</p>
-
-  <ProjectList client:visible projects={projectData} />
+  <ProjectList projects={projects.map((project) => project.data)} />
 </section>

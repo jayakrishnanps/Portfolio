@@ -1,20 +1,19 @@
 ---
 title: "Tutorva"
 subtitle: "Real-time Learning Platform"
-description: "Real-time video session learning platform with scheduling and attendance management"
-longDescription: "Tutorva is a comprehensive real-time video session learning platform designed to facilitate live education with robust scheduling and attendance tracking. The platform supports seamless video conferencing for tutoring sessions, automated attendance logging, and an intuitive dashboard for both tutors and students. Extended the core system by integrating AI-powered features including document-based test and question paper generation, plus a machine learning recommendation engine that suggests personalized learning paths."
+description: "Live video learning with session scheduling, attendance tracking, and AI-generated assessments."
+longDescription: "Built a Python/Django platform for live tutoring sessions with scheduling and attendance management. Implemented document-based test and question-paper generation, plus a machine-learning recommendation system."
 tech: ["Python", "Django", "HTML", "CSS", "JavaScript", "AI/ML"]
 features:
-  - "Real-time video sessions with WebRTC"
-  - "Scheduling system with calendar integration"
-  - "Automated attendance management and reports"
-  - "AI-based test/question paper generation from documents"
-  - "ML-powered personalized recommendation system"
+  - "Real-time video sessions"
+  - "Session scheduling and attendance management"
+  - "Test and question-paper generation from documents"
+  - "Machine-learning recommendations"
 role: "Full-Stack Developer & AI Integrator"
-year: "2024"
+year: "2023 – 2024"
 category: "Full-Stack"
 links:
   github: "https://github.com/jayakrishnanps"
 ---
 
-Tutorva delivers a production-ready online tutoring experience with a reliable Django backend handling concurrent video sessions and RESTful APIs consumed by a dynamic frontend. Clever use of AI (document parsing + NLP) to auto-generate assessments directly from lecture notes.
+Built a Python/Django learning platform combining live video sessions, scheduling, and attendance management. Added document-based assessment generation and a machine-learning recommendation system.

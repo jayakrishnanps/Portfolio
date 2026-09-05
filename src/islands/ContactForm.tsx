@@ -1,94 +1,30 @@
 import React, { useState } from "react";
+import { contact } from "../data/contact";
 
 export default function ContactForm() {
   const [form, setForm] = useState({ name: "", email: "", message: "" });
-  const [status, setStatus] = useState<"idle" | "sending" | "success">("idle");
-  const [errors, setErrors] = useState<Record<string, string>>({});
+  const [draftOpened, setDraftOpened] = useState(false);
 
-  const validate = () => {
-    const newErrors: Record<string, string> = {};
-    if (!form.name.trim()) newErrors.name = "Name is required";
-    if (!form.email.match(/^[^\s@]+@[^\s@]+\.[^\s@]+$/))
-      newErrors.email = "Valid email required";
-    if (form.message.trim().length < 12)
-      newErrors.message = "Message must be at least 12 characters";
-    setErrors(newErrors);
-    return Object.keys(newErrors).length === 0;
+  const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+    const messageField = event.currentTarget.elements.namedItem('message') as HTMLTextAreaElement;
+    messageField.setCustomValidity(form.message.trim().length < 12 ? 'Enter at least 12 characters.' : '');
+    if (!event.currentTarget.reportValidity()) return;
+    const subject = `Portfolio inquiry from ${form.name.trim()}`;
+    const body = `${form.message.trim()}\n\nFrom: ${form.name.trim()}\nReply to: ${form.email.trim()}`;
+    window.location.href = `mailto:${contact.email}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+    setDraftOpened(true);
   };
-
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
-    if (!validate()) return;
-
-    setStatus("sending");
-    await new Promise((r) => setTimeout(r, 700));
-
-    setStatus("success");
-    setForm({ name: "", email: "", message: "" });
-    setTimeout(() => setStatus("idle"), 4200);
-  };
-
-  if (status === "success") {
-    return (
-      <div className="card text-center py-10 border-[var(--accent)]/30">
-        <div className="text-4xl mb-4 text-[var(--green)]">✓</div>
-        <h3 className="text-xl font-semibold mb-2">Message received.</h3>
-        <p className="text-[var(--text-muted)]">
-          Thank you. I'll reply within 48 hours.
-        </p>
-      </div>
-    );
-  }
 
   return (
-    <form onSubmit={handleSubmit} className="space-y-5">
-      <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
-        <div>
-          <input
-            type="text"
-            placeholder="Your name"
-            value={form.name}
-            onChange={(e) => setForm({ ...form, name: e.target.value })}
-            className="form-input"
-          />
-          {errors.name && (
-            <p className="text-[var(--text-error)] text-xs mt-1">{errors.name}</p>
-          )}
-        </div>
-        <div>
-          <input
-            type="email"
-            placeholder="Email address"
-            value={form.email}
-            onChange={(e) => setForm({ ...form, email: e.target.value })}
-            className="form-input"
-          />
-          {errors.email && (
-            <p className="text-[var(--text-error)] text-xs mt-1">{errors.email}</p>
-          )}
-        </div>
+    <form onSubmit={handleSubmit} className="contact-form">
+      <div className="form-row">
+        <div className="form-field"><label htmlFor="contact-name">Name</label><input id="contact-name" name="name" type="text" autoComplete="name" placeholder="Full name" required pattern={".*\\S.*"} title="Enter your name." maxLength={100} value={form.name} onChange={(event) => { setForm({ ...form, name: event.target.value }); setDraftOpened(false); }} /></div>
+        <div className="form-field"><label htmlFor="contact-email">Email address</label><input id="contact-email" name="email" type="email" autoComplete="email" placeholder="you@example.com" required maxLength={254} value={form.email} onChange={(event) => { setForm({ ...form, email: event.target.value }); setDraftOpened(false); }} /></div>
       </div>
-
-      <div>
-        <textarea
-          placeholder="Your message..."
-          rows={6}
-          value={form.message}
-          onChange={(e) => setForm({ ...form, message: e.target.value })}
-          className="form-input resize-y"
-        />
-        {errors.message && (
-          <p className="text-[var(--text-error)] text-xs mt-1">{errors.message}</p>
-        )}
-      </div>
-
-      <button
-        type="submit"
-        disabled={status === "sending"}
-        className="btn btn-primary px-10 disabled:opacity-70"
-      >
-        {status === "sending" ? "Sending..." : "Send Message"}
-      </button>
+      <div className="form-field"><label htmlFor="contact-message">Message</label><textarea id="contact-message" name="message" rows={4} placeholder="Role or project scope, requirements, and timeline" required minLength={12} maxLength={3000} value={form.message} onChange={(event) => { event.currentTarget.setCustomValidity(''); setForm({ ...form, message: event.target.value }); setDraftOpened(false); }} /></div>
+      <div className="form-actions"><button type="submit" className="send-button">Open email draft <span aria-hidden="true">↗</span></button><span>Review and send in your email app.</span></div>
+      {draftOpened && <p className="form-feedback" role="status">Complete sending in your email app. If it did not open, email <a href={`mailto:${contact.email}`}>{contact.email}</a> directly. Your message remains in this form.</p>}
     </form>
   );
 }
