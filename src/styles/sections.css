@@ -13,7 +13,7 @@
 .skill-item { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: baseline; gap: 2px 12px; padding: 19px 0; border-bottom: 1px solid var(--border); }
 .skill-name { font-size: .9375rem; font-weight: 500; }
 .skill-category { font-size: .75rem; color: var(--text-muted); letter-spacing: 0; }
-.contact-section { --text-muted: #bec9b7; --accent: #e4cbb7; --border: #56624e; display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.1fr); gap: 70px; color: #f4f4e9; background: #29372b; padding: 57px; margin: 16px 0 65px; border-radius: 3px; }
+.contact-section { --text-muted: #bec9b7; --accent: #d5e1b3; --border: #56624e; display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.1fr); gap: 70px; color: #f4f4e9; background: #29372b; padding: 57px; margin: 16px 0 65px; border-radius: 3px; }
 .contact-section .eyebrow { color: #bccab4; }
 .contact-intro h2 { font: 400 clamp(4rem, 6.8vw, 6.6rem)/1 var(--serif); letter-spacing: -.04em; margin: 22px 0; }
 .contact-description { color: var(--text-muted); font-size: 1rem; line-height: 1.85; max-width: 350px; }

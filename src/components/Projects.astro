@@ -1,13 +1,19 @@
 ---
 import { getCollection } from 'astro:content';
 import ProjectList from '../islands/ProjectList';
-const projectOrder = ['tutorva', 'product-management-system', 'hospital-management-system'];
-const projects = (await getCollection('projects')).sort((a, b) => projectOrder.indexOf(a.slug) - projectOrder.indexOf(b.slug));
+const projectOrder = ['orbit-ai', 'tutorva', 'ascent', 'athena', 'product-management-system', 'hospital-management-system'];
+const position = (slug: string) => {
+  const index = projectOrder.indexOf(slug);
+  return index < 0 ? Number.MAX_SAFE_INTEGER : index;
+};
+const projects = (await getCollection('projects')).sort((a, b) => position(a.slug) - position(b.slug) || a.data.title.localeCompare(b.data.title));
+const years = projects.flatMap((project) => (project.data.year?.match(/\d{4}/g) ?? []).map(Number));
+const yearRange = years.length ? `${Math.min(...years)} — ${Math.max(...years)}` : '';
 ---
 <section id="projects" class="folio-section work-section" aria-labelledby="work-title">
   <div class="section-heading" data-reveal>
     <div><p class="eyebrow">01 / Selected work</p><h2 id="work-title">Projects<span class="heading-period" aria-hidden="true">.</span></h2></div>
-    <span class="section-meta mono">2023 — 2024</span>
+    <span class="section-meta mono">{yearRange}</span>
   </div>
   <ProjectList projects={projects.map((project) => project.data)} />
 </section>

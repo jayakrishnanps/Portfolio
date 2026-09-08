@@ -1,23 +1,28 @@
 <script>
   const preference = window.matchMedia('(prefers-reduced-motion: reduce)');
   const running = new Set<Animation>();
-  const enter = (element: Element, delay = 0) => {
+  const animate = (element: Element, keyframes: Keyframe[], options: KeyframeAnimationOptions) => {
     if (preference.matches || !('animate' in element)) return;
-    const animation = element.animate(
-      [{ opacity: 0, transform: 'translateY(18px)' }, { opacity: 1, transform: 'translateY(0)' }],
-      { duration: 620, delay, easing: 'cubic-bezier(.22, 1, .36, 1)', fill: 'backwards' }
-    );
+    const animation = element.animate(keyframes, { easing: 'cubic-bezier(.22, 1, .36, 1)', fill: 'backwards', ...options });
     running.add(animation);
     animation.finished.then(() => running.delete(animation), () => running.delete(animation));
   };
+  const enter = (element: Element, delay = 0) => animate(element,
+    [{ opacity: 0, transform: 'translateY(28px)' }, { opacity: 1, transform: 'translateY(0)' }],
+    { duration: 780, delay }
+  );
 
-  document.querySelectorAll('[data-enter]').forEach((element, index) => enter(element, index * 65));
+  document.querySelectorAll('[data-enter]').forEach((element, index) => enter(element, index * 90));
 
   if ('IntersectionObserver' in window) {
     const revealObserver = new IntersectionObserver((entries) => {
       entries.forEach((entry) => {
         if (!entry.isIntersecting) return;
         enter(entry.target);
+        entry.target.querySelectorAll('.diagram-node, .inventory-output').forEach((node, index) => animate(node,
+          [{ opacity: 0, transform: 'translateY(12px)' }, { opacity: 1, transform: 'translateY(0)' }],
+          { duration: 560, delay: 180 + index * 75 }
+        ));
         revealObserver.unobserve(entry.target);
       });
     }, { threshold: 0.08 });

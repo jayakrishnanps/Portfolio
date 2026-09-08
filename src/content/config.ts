@@ -9,6 +9,8 @@ const projectsCollection = defineCollection({
     longDescription: z.string().optional(),
     tech: z.array(z.string()),
     features: z.array(z.string()).optional(),
+    plannedFeatures: z.array(z.string()).optional(),
+    status: z.enum(['Released', 'In development']).optional(),
     role: z.string().optional(),
     year: z.string().optional(),
     category: z.string().default("Full-Stack"),
@@ -16,6 +18,8 @@ const projectsCollection = defineCollection({
       .object({
         github: z.string().url().optional(),
         demo: z.string().url().optional(),
+        website: z.string().url().optional(),
+        release: z.string().url().optional(),
       })
       .optional(),
   }),
