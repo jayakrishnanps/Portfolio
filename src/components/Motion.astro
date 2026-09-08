@@ -1,0 +1,42 @@
+<script>
+  const preference = window.matchMedia('(prefers-reduced-motion: reduce)');
+  const running = new Set<Animation>();
+  const enter = (element: Element, delay = 0) => {
+    if (preference.matches || !('animate' in element)) return;
+    const animation = element.animate(
+      [{ opacity: 0, transform: 'translateY(18px)' }, { opacity: 1, transform: 'translateY(0)' }],
+      { duration: 620, delay, easing: 'cubic-bezier(.22, 1, .36, 1)', fill: 'backwards' }
+    );
+    running.add(animation);
+    animation.finished.then(() => running.delete(animation), () => running.delete(animation));
+  };
+
+  document.querySelectorAll('[data-enter]').forEach((element, index) => enter(element, index * 65));
+
+  if ('IntersectionObserver' in window) {
+    const revealObserver = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (!entry.isIntersecting) return;
+        enter(entry.target);
+        revealObserver.unobserve(entry.target);
+      });
+    }, { threshold: 0.08 });
+    document.querySelectorAll('[data-reveal]').forEach((element) => revealObserver.observe(element));
+
+    const links = document.querySelectorAll<HTMLAnchorElement>('.main-nav a');
+    const navigationObserver = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (!entry.isIntersecting) return;
+        links.forEach((link) => {
+          if (link.hash === '#' + entry.target.id) link.setAttribute('aria-current', 'location');
+          else link.removeAttribute('aria-current');
+        });
+      });
+    }, { rootMargin: '-10% 0px -60% 0px', threshold: 0 });
+    document.querySelectorAll('main > section[id]').forEach((section) => navigationObserver.observe(section));
+  }
+
+  preference.addEventListener('change', () => {
+    if (preference.matches) running.forEach((animation) => animation.cancel());
+  });
+</script>

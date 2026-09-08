@@ -2,29 +2,29 @@
 import { contact } from '../data/contact';
 ---
 <section id="hero" class="hero" aria-labelledby="hero-title">
-  <div class="hero-main">
-    <p class="eyebrow"><span class="status-dot" aria-hidden="true"></span> Full-stack developer <span class="small-rule" aria-hidden="true"></span></p>
-    <div class="name-composition">
-      <h1 id="hero-title">Jayakrishnan<br /><i>P S<span>.</span></i></h1>
-    </div>
+  <div class="hero-meta" data-enter>
+    <p class="eyebrow"><span class="status-dot" aria-hidden="true"></span> Full-stack developer</p>
+    <span class="mono hero-location">Kerala, India · UTC+5:30</span>
+  </div>
+  <h1 id="hero-title" class="hero-name" data-enter><span>Jayakrishnan</span> <i>P S<span class="name-period">.</span></i></h1>
+  <div class="hero-main" data-enter>
     <p class="hero-statement">React and Next.js interfaces backed by Django APIs and database-driven workflows.</p>
     <p class="hero-description">Built learning, inventory, and clinical applications with live video, usage-based recommendations, and document-to-test generation.</p>
     <div class="hero-links">
-      <a href="#projects" class="text-link strong-link"><span class="status-dot" aria-hidden="true"></span> View projects <span aria-hidden="true">↘</span></a>
+      <a href="#projects" class="primary-link">View projects <span class="link-icon" aria-hidden="true">↘</span></a>
       <a href={`mailto:${contact.email}`} class="text-link">Email me <span aria-hidden="true">↗</span></a>
     </div>
   </div>
-  <aside class="hero-aside" aria-label="Professional experience">
-    <div class="practice-card">
-      <div class="card-meta mono"><span>Jun 2025 – Feb 2026</span></div>
-      <h2>Experience</h2>
-      <p>Developed backend services and REST APIs for full-stack and generative AI applications. Delivered product features from concept to production.</p>
-      <dl class="practice-facts">
-        <div><dt>Role</dt><dd>Software Engineer & Generative AI Intern</dd></div>
-        <div><dt>Stack</dt><dd>Python, Django & JavaScript</dd></div>
-      </dl>
-    </div>
-    <div class="availability"><span class="availability-dot" aria-hidden="true"></span><p>Available for full-time software engineering roles.</p></div>
+  <aside class="hero-aside" aria-labelledby="experience-title" data-enter>
+    <div class="experience-heading"><h2 id="experience-title">Experience</h2><span class="mono">2025 — 26</span></div>
+    <p class="experience-role">Software Engineer &<br />Generative AI Intern</p>
+    <p class="experience-date mono">Jun 2025 – Feb 2026</p>
+    <p class="experience-description">Developed backend services and REST APIs for full-stack and generative AI applications. Delivered product features from concept to production.</p>
+    <p class="experience-stack">Python <span>/</span> Django <span>/</span> JavaScript</p>
   </aside>
-  <div class="hero-colophon"><span class="mono">Kerala, India</span><span class="mono">Master of Computer Applications · 2025</span></div>
+  <div class="hero-colophon" data-enter>
+    <p class="availability"><span class="status-dot" aria-hidden="true"></span> Available for full-time engineering roles</p>
+    <span class="mono">MCA · 2025</span>
+    <a href="#projects" class="section-jump" aria-label="Scroll to projects"><span aria-hidden="true">↓</span></a>
+  </div>
 </section>

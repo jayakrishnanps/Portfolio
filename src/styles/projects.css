@@ -1,0 +1,146 @@
+
+.folio-section { padding: 88px 0; border: 0; }
+.section-heading { display: flex; align-items: end; justify-content: space-between; gap: 30px; margin-bottom: 36px; }
+.section-heading h2 { font: 400 clamp(3.1rem, 4.8vw, 4.7rem)/1.04 var(--serif); letter-spacing: -.025em; margin-top: 12px; }
+.heading-period { color: var(--accent); }
+.section-meta { color: var(--text-muted); padding-bottom: 8px; }
+.work-section { margin: 0; }
+.project-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 48px 32px; }
+.project-card { min-width: 0; }
+.project-card-featured { grid-column: 1 / -1; display: grid; grid-template-columns: minmax(0, 1.35fr) minmax(0, 1fr); background: var(--surface); }
+.project-content { padding: 26px 0 0; }
+.project-card-featured .project-content { padding: 38px; display: flex; flex-direction: column; align-items: start; justify-content: center; }
+.project-meta { color: var(--text-muted); display: flex; justify-content: space-between; gap: 14px; flex-wrap: wrap; font-size: .75rem; text-transform: uppercase; letter-spacing: .02em; width: 100%; }
+.project-content h3 { font: 400 clamp(2rem, 2.7vw, 2.6rem)/1.08 var(--serif); letter-spacing: -.015em; margin-top: 15px; max-width: 430px; }
+.project-card-featured h3 { font-size: clamp(3rem, 4.7vw, 4.5rem); margin-top: 25px; }
+.project-description { color: var(--text-muted); font-size: 1rem; line-height: 1.75; margin-top: 16px; max-width: 500px; }
+.project-technologies { display: flex; flex-wrap: wrap; gap: 3px 0; color: var(--text-muted); font: .75rem/1.75 var(--mono); margin-top: 18px; }
+.project-technologies span + span::before { content: '/'; margin: 0 8px; color: #999e90; }
+.project-disclosure { width: 100%; margin-top: 27px; border-top: 1px solid #cbd0c2; }
+.project-disclosure summary { list-style: none; padding: 14px 0; display: flex; justify-content: space-between; align-items: center; gap: 15px; font-size: .875rem; cursor: pointer; }
+.project-disclosure summary::-webkit-details-marker { display: none; }
+.project-disclosure summary::marker { content: ''; }
+.disclosure-icon { display: grid; place-items: center; width: 30px; height: 30px; border: 1px solid #b8c0ac; border-radius: 50%; font-size: 1.25rem; line-height: 1; color: var(--text); transition: transform 260ms var(--ease), background 200ms, color 200ms; }
+.project-disclosure .read-open { display: none; }
+.project-disclosure[open] .read-open { display: inline; }
+.project-disclosure[open] .read-closed { display: none; }
+.project-disclosure[open] .disclosure-icon { transform: rotate(45deg); }
+.project-disclosure summary:hover .disclosure-icon { background: var(--text); color: var(--bg); }
+.project-details { border-top: 1px solid #cbd0c2; padding-top: 22px; padding-bottom: 12px; }
+.project-details > .eyebrow:not(:first-child) { margin-top: 24px; }
+.project-details .project-description { margin-top: 10px; font-size: .9375rem; }
+.project-features { list-style: none; padding: 0; margin: 10px 0 0; }
+.project-features li { border-bottom: 1px solid var(--border); font-size: .875rem; padding: 8px 0 8px 18px; position: relative; }
+.project-features li::before { content: '—'; position: absolute; left: 0; color: var(--accent); }
+.project-specs { display: grid; gap: 16px; margin: 23px 0; }
+.project-specs dt { font: .75rem var(--mono); color: var(--text-muted); text-transform: uppercase; }
+.project-specs dd { font-size: .875rem; margin: 5px 0 0; }
+.project-links { display: flex; flex-wrap: wrap; gap: 20px; }
+
+/* Feature diagrams show documented workflows rather than fabricated UI screenshots. */
+.project-visual { --plate-ink: #f3f4e9; --plate-muted: #bfccb6; position: relative; display: flex; flex-direction: column; justify-content: space-between; gap: 26px; margin: 0; padding: 27px; min-height: 340px; overflow: hidden; color: var(--plate-ink); isolation: isolate; }
+.project-visual::before { content: ''; position: absolute; z-index: -1; inset: 0; background-image: linear-gradient(#ffffff06 1px, transparent 1px), linear-gradient(90deg, #ffffff06 1px, transparent 1px); background-size: 32px 32px; pointer-events: none; }
+.visual-learning { background: #2e4335; padding: 30px; min-height: 450px; }
+.plate-caption { display: flex; justify-content: space-between; gap: 12px; color: var(--plate-muted); font: .75rem/1.5 var(--mono); text-transform: uppercase; letter-spacing: .04em; }
+.plate-heading { font: 400 clamp(3rem, 4.5vw, 4.4rem)/1 var(--serif); letter-spacing: -.025em; }
+.plate-punctuation { color: #d5e29e; }
+.learning-map { display: grid; gap: 22px; }
+.diagram-lane > p { font: .75rem var(--mono); color: var(--plate-muted); margin-bottom: 12px; }
+.diagram-track { display: grid; grid-template-columns: minmax(0, 1fr) 16px minmax(0, 1fr) 16px minmax(0, 1fr); align-items: center; gap: 7px; }
+.diagram-node { padding: 14px 10px; border: 1px solid #6d8269; background: #324b3a; text-align: center; font-size: .8125rem; line-height: 1.45; min-width: 0; border-radius: 3px; }
+.node-highlight { background: #d5e1b3; color: #25321e; border-color: #d5e1b3; }
+.diagram-arrow { color: var(--plate-muted); text-align: center; }
+.plate-footer { display: flex; justify-content: space-between; gap: 16px; align-items: center; color: var(--plate-muted); font: .75rem var(--mono); }
+.plate-footer > span:last-child { font: 1.4rem var(--sans); }
+.diagram-content { transition: transform 550ms var(--ease); }
+.visual-inventory { --plate-ink: #3d3829; --plate-muted: #64583f; background: #e7dfc6; }
+.visual-inventory::before { background-image: linear-gradient(#433d2910 1px, transparent 1px), linear-gradient(90deg, #433d2910 1px, transparent 1px); }
+.inventory-map { display: grid; grid-template-columns: minmax(0, 1fr) 52px minmax(0, 1.15fr); align-items: center; min-height: 185px; }
+.inventory-inputs { display: grid; gap: 24px; }
+.visual-inventory .diagram-node { background: #f0ead9; border-color: #bfb598; color: #49412d; padding: 15px 8px; }
+.inventory-connectors { width: 100%; height: 140px; stroke: #958660; stroke-width: 1.5; }
+.inventory-output { border: 1px solid #514b36; background: #514b36; color: #f7f3e7; padding: 22px 16px; display: flex; flex-direction: column; gap: 13px; border-radius: 3px; }
+.inventory-output > span:nth-child(2) { font: 400 clamp(1.3rem, 2.2vw, 1.9rem)/1.1 var(--serif); overflow-wrap: anywhere; }
+.diagram-label { font: .75rem var(--mono); text-transform: uppercase; opacity: .7; }
+.output-mark { font-size: 1.3rem; align-self: end; }
+.visual-clinical { --plate-ink: #463e36; --plate-muted: #675a50; background: #e8e3dd; }
+.visual-clinical::before { background-image: radial-gradient(#8d807447 .7px, transparent .7px); background-size: 18px 18px; }
+.clinical-map { position: relative; display: flex; flex-direction: column; justify-content: space-between; align-items: center; min-height: 195px; padding: 8px 0; }
+.clinical-connectors { position: absolute; inset: 0; width: 100%; height: 100%; stroke: #a0806f; stroke-width: 1.4; }
+.clinical-connectors circle { fill: #8b5545; stroke: none; }
+.visual-clinical .diagram-node { position: relative; color: #654332; border-color: #c4afa0; background: #f2ede7; }
+.clinical-root { min-width: 170px; padding: 18px; background: #814c3e !important; color: #faf4ed !important; border-color: #814c3e !important; }
+.clinical-leaves { width: 100%; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 10px; }
+.inventory-mobile-arrow, .clinical-line { display: none; }
+@media (hover: hover) and (prefers-reduced-motion: no-preference) {
+  .project-card:hover .diagram-content { transform: translateY(-4px); }
+}
+@media (prefers-reduced-motion: no-preference) {
+  .project-disclosure[open] .project-details { animation: detail-enter 260ms var(--ease); }
+  @keyframes detail-enter { from { opacity: 0; transform: translateY(-6px); } to { opacity: 1; transform: translateY(0); } }
+}
+@media (max-width: 1100px) {
+  .project-card-featured { grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr); }
+  .project-card-featured .project-content { padding: 28px; }
+  .project-visual, .visual-learning { padding: 23px; }
+  .diagram-node { font-size: .75rem; padding: 13px 7px; }
+  .diagram-track { gap: 5px; }
+}
+@media (max-width: 900px) {
+  .project-card-featured { grid-template-columns: 1fr; }
+  .project-card-featured .project-content { padding: 30px; }
+  .visual-learning { min-height: 400px; padding: 30px; }
+  .project-grid { gap: 36px 24px; }
+  .project-visual { min-height: 330px; padding: 22px; }
+  .inventory-map { grid-template-columns: 1fr; gap: 15px; }
+  .inventory-inputs { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px; }
+  .inventory-connectors { display: none; }
+  .inventory-output { padding: 15px; gap: 10px; }
+  .inventory-output > span:nth-child(2) { font-size: 1.7rem; }
+  .inventory-output br { display: none; }
+  .inventory-output .output-mark { display: none; }
+  .clinical-leaves { grid-template-columns: 1fr; gap: 8px; }
+  .clinical-map { gap: 22px; }
+  .clinical-leaves .diagram-node { padding: 8px; }
+  .clinical-branch { display: none; }
+  .clinical-line { display: inline; }
+  .inventory-mobile-arrow { display: block; text-align: center; line-height: 1; }
+  .clinical-connectors circle { display: none; }
+  .clinical-root { width: 100%; }
+}
+@media (max-width: 600px) {
+  .folio-section { padding: 55px 0; }
+  .section-heading { margin-bottom: 26px; gap: 18px; }
+  .section-heading h2 { font-size: 3.3rem; }
+  .section-meta { font-size: .75rem; }
+  .project-grid { grid-template-columns: 1fr; gap: 38px; }
+  .project-card-featured { grid-column: auto; }
+  .project-card-featured .project-content { padding: 24px 20px; }
+  .project-card-featured h3 { font-size: 3.6rem; margin-top: 18px; }
+  .project-content { padding-top: 23px; }
+  .project-content h3 { font-size: 2.5rem; }
+  .project-visual { padding: 20px; min-height: 320px; }
+  .visual-learning { min-height: 385px; }
+  .plate-caption { font-size: .75rem; letter-spacing: 0; }
+  .plate-heading { font-size: 3.6rem; }
+  .learning-map { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px; }
+  .diagram-lane > p { min-height: 30px; margin-bottom: 7px; line-height: 1.45; }
+  .diagram-track { grid-template-columns: minmax(0, 1fr); gap: 4px; }
+  .diagram-track .diagram-arrow { transform: rotate(90deg); line-height: 20px; }
+  .diagram-node { font-size: .8125rem; padding: 10px 6px; }
+  .plate-footer { font-size: .75rem; }
+
+
+
+
+
+
+
+  .clinical-map { min-height: 210px; }
+  .clinical-root { width: auto; }
+  .clinical-leaves { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 6px; }
+  .clinical-leaves .diagram-node { font-size: .75rem; padding: 10px 3px; overflow-wrap: anywhere; }
+  .clinical-branch { display: inline; }
+  .clinical-line { display: none; }
+  .clinical-connectors circle { display: inline; }
+}

@@ -5,7 +5,7 @@ export default function SkillsFilter({ skills }: { skills: Skill[] }) {
   const [active, setActive] = useState<SkillCategory>("All");
   const filtered = active === "All" ? skills : skills.filter((skill) => skill.category === active);
   return (
-    <div className="toolkit">
+    <div className="toolkit" data-reveal>
       <div className="skill-filters" role="group" aria-label="Filter skills by category">
         {skillCategories.map((category) => (
           <button type="button" key={category} aria-pressed={active === category} aria-controls="skill-list" onClick={() => setActive(category)} className={active === category ? "filter-button is-active" : "filter-button"}>
@@ -14,9 +14,9 @@ export default function SkillsFilter({ skills }: { skills: Skill[] }) {
         ))}
       </div>
       <p className="sr-only" role="status">{filtered.length} {active === "All" ? "" : active.toLowerCase() + " "}skills shown</p>
-      <ul className="skill-list" id="skill-list">
+      <ul className="skill-list" id="skill-list" key={active}>
         {filtered.map((skill) => (
-          <li key={skill.name} className="skill-item"><span className="skill-name">{skill.name}</span><span className="skill-category mono">{skill.category}</span><span aria-hidden="true" className="skill-cross">+</span></li>
+          <li key={skill.name} className="skill-item"><span className="skill-name">{skill.name}</span><span className="skill-category mono">{skill.category}</span></li>
         ))}
       </ul>
     </div>

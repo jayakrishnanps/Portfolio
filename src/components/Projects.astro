@@ -5,8 +5,9 @@ const projectOrder = ['tutorva', 'product-management-system', 'hospital-manageme
 const projects = (await getCollection('projects')).sort((a, b) => projectOrder.indexOf(a.slug) - projectOrder.indexOf(b.slug));
 ---
 <section id="projects" class="folio-section work-section" aria-labelledby="work-title">
-  <div class="section-heading">
-    <div><p class="eyebrow" aria-hidden="true">01</p><h2 id="work-title">Projects</h2></div>
+  <div class="section-heading" data-reveal>
+    <div><p class="eyebrow">01 / Selected work</p><h2 id="work-title">Projects<span class="heading-period" aria-hidden="true">.</span></h2></div>
+    <span class="section-meta mono">2023 — 2024</span>
   </div>
   <ProjectList projects={projects.map((project) => project.data)} />
 </section>
