@@ -12,7 +12,7 @@ const yearRange = years.length ? `${Math.min(...years)} — ${Math.max(...years)
 ---
 <section id="projects" class="folio-section work-section" aria-labelledby="work-title">
   <div class="section-heading" data-reveal>
-    <div><p class="eyebrow">01 / Selected work</p><h2 id="work-title">Projects<span class="heading-period" aria-hidden="true">.</span></h2></div>
+    <h2 id="work-title">Projects</h2>
     <span class="section-meta mono">{yearRange}</span>
   </div>
   <ProjectList projects={projects.map((project) => project.data)} />

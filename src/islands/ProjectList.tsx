@@ -4,13 +4,18 @@ import ProjectDiagram from "./ProjectDiagram";
 
 type Project = CollectionEntry<"projects">["data"];
 
-function ProjectCard({ project, featured = false }: { project: Project; featured?: boolean }) {
+function ProjectCard({ project, featured = false, wide = false }: { project: Project; featured?: boolean; wide?: boolean }) {
   return (
-    <article className={featured ? "project-card project-card-featured" : "project-card"} data-reveal>
+    <article className={`project-card${featured ? " project-card-featured" : ""}${wide ? " project-card-wide" : ""}`} data-reveal>
       <ProjectDiagram project={project.title} />
       <div className="project-content">
-        <div className="project-meta mono"><span>{project.category}</span><span>{project.year}</span></div>
-        {project.status && <span className={project.status === "In development" ? "project-status status-development" : "project-status status-released"}>{project.status}</span>}
+        <div className="project-meta mono">
+          <span>{project.category}</span>
+          <div className="project-meta-end">
+            {project.status && <span className={project.status === "In development" ? "project-status status-development" : "project-status status-released"}>{project.status}</span>}
+            <span>{project.year}</span>
+          </div>
+        </div>
         <h3>{project.title}</h3>
         <p className="project-description">{project.description}</p>
         <div className="project-technologies">{project.tech.slice(0, 4).map((tech) => <span key={tech}>{tech}</span>)}</div>
@@ -45,14 +50,14 @@ export default function ProjectList({ projects }: { projects: Project[] }) {
   const additional = projects.slice(3);
   return (
     <>
-      <div className="project-grid">
+      <div className="project-grid primary-projects">
         {visible.map((project, index) => <ProjectCard key={project.title} project={project} featured={index === 0} />)}
       </div>
       {additional.length > 0 && (
         <details className="more-projects">
           <summary aria-controls="additional-projects"><span className="show-more-label">Show more projects</span><span className="show-less-label">Show fewer projects</span><span className="more-count">{additional.length}</span><span className="disclosure-icon" aria-hidden="true">+</span></summary>
           <div className="project-grid additional-projects" id="additional-projects">
-            {additional.map((project) => <ProjectCard key={project.title} project={project} />)}
+            {additional.map((project) => <ProjectCard key={project.title} project={project} wide />)}
           </div>
         </details>
       )}

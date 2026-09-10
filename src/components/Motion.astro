@@ -8,20 +8,20 @@
     animation.finished.then(() => running.delete(animation), () => running.delete(animation));
   };
   const enter = (element: Element, delay = 0) => animate(element,
-    [{ opacity: 0, transform: 'translateY(28px)' }, { opacity: 1, transform: 'translateY(0)' }],
-    { duration: 780, delay }
+    [{ opacity: 0, transform: 'translateY(18px)' }, { opacity: 1, transform: 'translateY(0)' }],
+    { duration: 620, delay }
   );
 
-  document.querySelectorAll('[data-enter]').forEach((element, index) => enter(element, index * 90));
+  document.querySelectorAll('[data-enter]').forEach((element, index) => enter(element, index * 65));
 
   if ('IntersectionObserver' in window) {
     const revealObserver = new IntersectionObserver((entries) => {
       entries.forEach((entry) => {
         if (!entry.isIntersecting) return;
         enter(entry.target);
-        entry.target.querySelectorAll('.diagram-node, .inventory-output').forEach((node, index) => animate(node,
-          [{ opacity: 0, transform: 'translateY(12px)' }, { opacity: 1, transform: 'translateY(0)' }],
-          { duration: 560, delay: 180 + index * 75 }
+        entry.target.querySelectorAll('[data-trace]').forEach((path, index) => animate(path,
+          [{ strokeDashoffset: 1 }, { strokeDashoffset: 0 }],
+          { duration: 850, delay: 160 + index * 40 }
         ));
         revealObserver.unobserve(entry.target);
       });

@@ -4,8 +4,7 @@ import ContactForm from '../islands/ContactForm';
 ---
 <section id="contact" class="folio-section contact-section" aria-labelledby="contact-title">
   <div class="contact-intro" data-reveal>
-    <p class="eyebrow">03 / Inquiries</p>
-    <h2 id="contact-title">Contact<span class="heading-period" aria-hidden="true">.</span></h2>
+    <h2 id="contact-title">Contact</h2>
     <p class="contact-description">For engineering roles or project inquiries, include the scope, technical requirements, and timeline.</p>
     <a class="contact-email" href={`mailto:${contact.email}`}>{contact.email} <span aria-hidden="true">↗</span></a>
     <div class="contact-socials">
@@ -15,7 +14,7 @@ import ContactForm from '../islands/ContactForm';
     <a class="contact-phone" href={`tel:${contact.phone.replace(/\s/g, '')}`}>{contact.phone}</a>
   </div>
   <div class="letter-card" data-reveal>
-    <div class="letter-heading"><span class="mono">Send an inquiry</span><span class="letter-symbol" aria-hidden="true">↗</span></div>
+    <div class="letter-heading"><span class="mono">Send an inquiry</span></div>
     <ContactForm client:load />
   </div>
 </section>
