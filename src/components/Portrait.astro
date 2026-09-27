@@ -1,0 +1,45 @@
+---
+import { Image } from 'astro:assets';
+import portrait from '../assets/profilepicture.png';
+import '../styles/portrait.css';
+---
+<div class="hero-portrait">
+  <Image id="hero-portrait" src={portrait} alt="Portrait of Jayakrishnan P S" width={512} height={512} widths={[256, 512, 768]} sizes="(max-width: 600px) 176px, 256px" format="webp" quality={85} loading="eager" fetchpriority="high" />
+</div>
+<script>
+  const preference = window.matchMedia('(prefers-reduced-motion: reduce)');
+  let dispose: (() => void) | undefined;
+  let generation = 0;
+
+  const start = async () => {
+    const current = ++generation;
+    dispose?.();
+    dispose = undefined;
+    if (preference.matches) return;
+    const image = document.querySelector<HTMLImageElement>('#hero-portrait');
+    const title = document.querySelector<HTMLElement>('#hero-title');
+    const underline = document.querySelector<HTMLElement>('.portrait-underline');
+    if (!image || !title || !underline) return;
+    try {
+      await image.decode();
+      await document.fonts.ready;
+      if (current !== generation) return;
+      const { mountPortrait } = await import('../scripts/portrait');
+      if (current !== generation) return;
+      const cleanup = await mountPortrait(image, title, underline);
+      if (current !== generation) cleanup?.();
+      else dispose = cleanup;
+    } catch {
+      image.style.removeProperty('opacity');
+    }
+  };
+
+  const schedule = () => {
+    if ('requestIdleCallback' in window) window.requestIdleCallback(() => void start(), { timeout: 1200 });
+    else setTimeout(() => void start(), 200);
+  };
+  preference.addEventListener('change', () => void start());
+  window.addEventListener('pagehide', () => { generation++; dispose?.(); dispose = undefined; });
+  window.addEventListener('pageshow', (event) => { if (event.persisted) schedule(); });
+  schedule();
+</script>
