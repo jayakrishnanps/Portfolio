@@ -30,7 +30,12 @@ export async function mountPortrait(image: HTMLImageElement, title: HTMLElement,
     uLine: { value: new Vector4() },
     uAccent: { value: new Color(getComputedStyle(document.documentElement).getPropertyValue('--accent').trim()) },
     uMorph: { value: 0 },
-    uFall: { value: 0 },
+    uTravel: { value: 0 },
+    uFade: { value: 0 },
+    uFlow: { value: new Vector4() },
+    uSpread: { value: new Vector2() },
+    uPointer: { value: new Vector4(-1000, -1000, 52, 0) },
+    uDensity: { value: (compact ? 700 : 1400) / count },
     uDpr: { value: 1 },
     uSize: { value: 2 },
   };
@@ -50,6 +55,8 @@ export async function mountPortrait(image: HTMLImageElement, title: HTMLElement,
   let previous = 0;
   let progress = window.scrollY;
   let morphEnd = 1;
+  let travelStart = 1;
+  let travelEnd = 1;
   let fadeStart = 1;
   let fadeEnd = 1;
   let photo = new DOMRect();
@@ -58,6 +65,9 @@ export async function mountPortrait(image: HTMLImageElement, title: HTMLElement,
   let slowFrames = 0;
   let severeFrames = 0;
   let drawCount = count;
+  const pointer = new Vector2(-1000, -1000);
+  let pointerActive = 0;
+  const contact = document.querySelector<HTMLElement>('#contact');
   let resizeObserver: ResizeObserver | undefined;
 
   const dispose = () => {
@@ -82,12 +92,16 @@ export async function mountPortrait(image: HTMLImageElement, title: HTMLElement,
     photo = new DOMRect(imageRect.x + scrollX, imageRect.y + scrollY, imageRect.width, imageRect.height);
     line = new DOMRect(lineRect.x + scrollX, lineRect.y + scrollY, lineRect.width, lineRect.height);
     morphEnd = Math.max(90, (titleRect.top + scrollY - headerHeight) * 0.62);
-    fadeStart = morphEnd + Math.max(45, titleRect.height * 0.45);
-    fadeEnd = fadeStart + Math.max(170, innerHeight * 0.33);
+    travelStart = morphEnd + Math.max(45, titleRect.height * 0.45);
+    const contactTop = (contact?.getBoundingClientRect().top ?? document.body.scrollHeight) + scrollY;
+    fadeStart = Math.max(travelStart + innerHeight, contactTop - innerHeight * 0.85);
+    fadeEnd = fadeStart + innerHeight * 0.5;
+    travelEnd = fadeEnd;
     renderer.setPixelRatio(Math.min(devicePixelRatio, compact ? 1.5 : 2));
     const width = document.documentElement.clientWidth;
     renderer.setSize(width, innerHeight, false);
     uniforms.uViewport.value.set(width, innerHeight);
+    uniforms.uSpread.value.set(Math.min(150, width * 0.29), Math.min(90, width * 0.18));
     uniforms.uDpr.value = renderer.getPixelRatio();
     uniforms.uSize.value = Math.max(1.5, photo.width / Math.sqrt(drawCount) * 1.7);
     needsLayout = false;
@@ -106,32 +120,54 @@ export async function mountPortrait(image: HTMLImageElement, title: HTMLElement,
     progress += (scrollY - progress) * (1 - Math.exp(-Math.min(elapsed, 64) / 110));
     if (Math.abs(scrollY - progress) < 0.15) progress = scrollY;
     const morph = clamp(progress / morphEnd);
-    const fall = smooth(fadeStart, fadeEnd, progress);
+    const travel = smooth(travelStart, travelStart + innerHeight * 0.55, progress);
+    const phase = clamp((progress - travelStart) / (travelEnd - travelStart));
+    const fade = smooth(fadeStart, fadeEnd, progress);
+    const width = uniforms.uViewport.value.x;
+    const amplitude = Math.max(0, width * 0.5 - uniforms.uSpread.value.x - 24);
+    const turn = phase * Math.PI * 3;
+    const wave = phase * Math.PI * 4;
+    uniforms.uFlow.value.set(
+      width * 0.5 - Math.sin(turn) * amplitude,
+      innerHeight * (0.52 + Math.sin(wave) * 0.1),
+      amplitude,
+      phase,
+    );
     uniforms.uMorph.value = morph;
-    uniforms.uFall.value = fall;
+    uniforms.uTravel.value = travel;
+    uniforms.uFade.value = fade;
+    const cursor = uniforms.uPointer.value;
+    const pointerEase = 1 - Math.exp(-Math.min(elapsed, 64) / 80);
+    cursor.x += (pointer.x - cursor.x) * pointerEase;
+    cursor.y += (pointer.y - cursor.y) * pointerEase;
+    cursor.w += (pointerActive - cursor.w) * pointerEase;
+    const pointerMoving = Math.abs(pointer.x - cursor.x) + Math.abs(pointer.y - cursor.y) > 0.25
+      || Math.abs(pointerActive - cursor.w) > 0.001;
+    if (!pointerMoving) cursor.set(pointer.x, pointer.y, cursor.z, pointerActive);
     uniforms.uPortrait.value.set(photo.x + photo.width / 2 - scrollX, photo.y + photo.height / 2 - scrollY, photo.width, photo.height);
     uniforms.uLine.value.set(line.x + line.width / 2 - scrollX, line.y + line.height / 2 - scrollY, line.width, line.height);
     const dissolve = smooth(0, 0.18, morph);
     image.style.opacity = String(1 - dissolve);
     stage.style.opacity = String(smooth(0, 0.08, morph));
-    stage.hidden = progress === 0 || fall === 1;
+    stage.hidden = progress === 0 || fade === 1;
     try {
       if (!stage.hidden) renderer.render(scene, camera);
     } catch {
       dispose();
       return;
     }
-    if (elapsed > 34 && elapsed < 200 && morph > 0 && fall < 1) slowFrames++;
+    if (elapsed > 34 && elapsed < 200 && morph > 0 && fade < 1) slowFrames++;
     else slowFrames = Math.max(0, slowFrames - 1);
     severeFrames = elapsed > 200 && elapsed < 1000 ? severeFrames + 1 : 0;
     if (severeFrames >= 10) { dispose(); return; }
     if (slowFrames > 35 && drawCount > 8000) {
       drawCount = Math.max(8000, Math.floor(drawCount * 0.65));
       geometry.setDrawRange(0, drawCount);
+      uniforms.uDensity.value = (compact ? 700 : 1400) / drawCount;
       slowFrames = 0;
       uniforms.uSize.value = Math.max(1.5, photo.width / Math.sqrt(drawCount) * 1.7);
     }
-    if (progress !== scrollY) requestFrame();
+    if (progress !== scrollY || pointerMoving) requestFrame();
     else previous = 0;
   };
 
@@ -140,10 +176,24 @@ export async function mountPortrait(image: HTMLImageElement, title: HTMLElement,
   window.addEventListener('scroll', requestFrame, options);
   window.addEventListener('resize', relayout, options);
   window.visualViewport?.addEventListener('resize', relayout, options);
+  window.addEventListener('pointermove', (event) => {
+    if (event.pointerType !== 'mouse') return;
+    pointer.set(event.clientX, event.clientY);
+    if (!pointerActive) {
+      uniforms.uPointer.value.x = pointer.x;
+      uniforms.uPointer.value.y = pointer.y;
+    }
+    pointerActive = 1;
+    requestFrame();
+  }, options);
+  const releasePointer = () => { pointerActive = 0; requestFrame(); };
+  document.documentElement.addEventListener('pointerleave', releasePointer, options);
+  window.addEventListener('blur', releasePointer, options);
   document.addEventListener('visibilitychange', () => {
     cancelAnimationFrame(frame);
     frame = 0;
     previous = 0;
+    pointerActive = 0;
     if (!document.hidden) relayout();
   }, { signal: events.signal });
   canvas.addEventListener('webglcontextlost', dispose, { signal: events.signal });
