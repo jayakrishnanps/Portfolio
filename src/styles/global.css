@@ -37,7 +37,8 @@ main:focus { outline: none; }
 .eyebrow { color: var(--text-muted); text-transform: uppercase; display: flex; align-items: center; gap: 12px; }
 .skip-link { position: fixed; left: 1rem; top: -100px; z-index: 100; padding: 12px 18px; color: var(--bg); background: var(--text); }
 .skip-link:focus { top: 1rem; }
-.site-header { position: sticky; top: 0; z-index: 30; background: var(--bg); min-height: 86px; border-bottom: 1px solid var(--border); display: flex; align-items: center; justify-content: space-between; gap: 24px; }
+.site-header { position: sticky; top: 0; z-index: 30; background: var(--bg); min-height: 86px; border-bottom: 1px solid var(--border); display: flex; align-items: center; }
+.site-header-inner { display: flex; align-items: center; justify-content: space-between; gap: 24px; }
 .folio-mark { display: inline-flex; align-items: center; min-height: 44px; padding-right: 12px; }
 .brand-initials { color: var(--accent); font: 400 2.15rem/1 var(--serif); letter-spacing: -.075em; }
 .main-nav { display: flex; gap: 32px; align-items: center; }
@@ -103,7 +104,8 @@ main:focus { outline: none; }
 }
 @media (max-width: 600px) {
   html { scroll-padding-top: 9rem; }
-  .site-header { min-height: 0; padding: 12px 0 10px; flex-wrap: wrap; gap: 10px; }
+  .site-header { min-height: 0; padding: 12px 0 10px; }
+  .site-header-inner { flex-wrap: wrap; gap: 10px; }
   .header-github { margin-left: auto; }
   .main-nav { order: 3; width: 100%; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 20px; }
   .main-nav a { padding: 8px 0; }
@@ -130,9 +132,6 @@ main:focus { outline: none; }
 }
 @media (hover: hover) and (prefers-reduced-motion: no-preference) {
   .primary-link:hover { transform: translateY(-2px); }
-}
-@supports (backdrop-filter: blur(12px)) {
-  .site-header { background: color-mix(in srgb, var(--bg) 94%, transparent); backdrop-filter: blur(12px); }
 }
 @media (prefers-reduced-motion: no-preference) {
   html { scroll-behavior: smooth; }

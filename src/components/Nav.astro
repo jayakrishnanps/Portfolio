@@ -2,11 +2,13 @@
 import { contact } from '../data/contact';
 ---
 <header class="site-header">
-  <a class="folio-mark" href="#hero" aria-label="JK — Home"><span class="brand-initials">JK</span></a>
-  <nav class="main-nav" aria-label="Main navigation">
-    <a href="#projects">Projects</a>
-    <a href="#skills">Skills</a>
-    <a href="#contact">Contact</a>
-  </nav>
-  <a href={contact.github} target="_blank" rel="noopener noreferrer" class="header-github">GitHub <span aria-hidden="true">↗</span></a>
+  <div class="folio site-header-inner">
+    <a class="folio-mark" href="#hero" aria-label="JK — Home"><span class="brand-initials">JK</span></a>
+    <nav class="main-nav" aria-label="Main navigation">
+      <a href="#projects">Projects</a>
+      <a href="#skills">Skills</a>
+      <a href="#contact">Contact</a>
+    </nav>
+    <a href={contact.github} target="_blank" rel="noopener noreferrer" class="header-github">GitHub <span aria-hidden="true">↗</span></a>
+  </div>
 </header>
