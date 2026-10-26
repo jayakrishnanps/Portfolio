@@ -49,7 +49,6 @@ main:focus { outline: none; }
 .site-header-inner { width: min(1304px, calc(100% - 80px)); min-height: 62px; display: flex; align-items: center; justify-content: space-between; gap: 24px; }
 .folio-mark { display: inline-flex; align-items: center; gap: 12px; min-height: 44px; }
 .brand-initials { font: 400 2.15rem/1 var(--masthead); }
-.brand-caption { font: 600 .65rem/1.18 var(--sans); text-transform: uppercase; letter-spacing: .1em; border-left: 1px solid var(--border); padding-left: 11px; }
 .main-nav { display: flex; gap: 36px; }
 .main-nav a { position: relative; min-height: 44px; display: flex; align-items: center; gap: 7px; font: 600 .9rem var(--sans); letter-spacing: .06em; text-transform: uppercase; }
 .nav-number { font: .6rem var(--mono); color: var(--text-muted); align-self: center; }
@@ -69,7 +68,6 @@ main:focus { outline: none; }
 .masthead-star { font-size: 1.05rem; color: var(--accent); }
 .front-page { display: grid; grid-template-columns: minmax(0, 1fr) 31%; gap: 44px; padding-block: 36px 40px; }
 .lead-story { min-width: 0; }
-.ink-square { width: 7px; height: 7px; background: var(--accent); }
 .lead-headline { margin-top: 16px; font: 600 clamp(3.5rem, 5.9vw, 6.3rem)/.99 var(--serif); letter-spacing: -.065em; text-wrap: balance; }
 .lead-headline em { color: var(--accent); font-weight: 500; }
 .cut-word { display: inline-flex; align-items: baseline; gap: .012em; margin-inline: .015em; padding-block: .07em; white-space: nowrap; vertical-align: baseline; font-size: .85em; letter-spacing: -.035em; }
@@ -172,7 +170,6 @@ main:focus { outline: none; }
   .folio { width: calc(100% - 16px); }
   .paper-sheet { padding-inline: 20px; margin-top: 8px; }
   .site-header-inner { min-height: 56px; width: calc(100% - 32px); gap: 12px; }
-  .brand-caption { display: none; }
   .brand-initials { font-size: 1.9rem; }
   .main-nav { gap: 20px; }
   .main-nav a { font-size: .8rem; gap: 4px; }
