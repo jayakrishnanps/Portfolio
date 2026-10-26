@@ -1,0 +1,8 @@
+---
+interface Props {
+  text: string;
+  variant?: 'paper' | 'ink';
+}
+const { text, variant = 'paper' } = Astro.props;
+---
+<span class:list={['cut-word', `cut-word-${variant}`]} aria-hidden="true">{Array.from(text).map((letter) => <span class="cut-letter">{letter}</span>)}</span>

@@ -4,17 +4,20 @@ import ContactForm from '../islands/ContactForm';
 ---
 <section id="contact" class="folio-section contact-section" aria-labelledby="contact-title">
   <div class="contact-intro" data-reveal>
-    <h2 id="contact-title">Contact</h2>
-    <p class="contact-description">For engineering roles or project inquiries, include the scope, technical requirements, and timeline.</p>
+    <div class="desk-label"><span>03</span><p>Correspondence</p></div>
+    <h2 id="contact-title">Letters to<br />the <i>developer.</i></h2>
+    <p class="contact-description">Have a role in mind, a difficult problem, or a project worth building? Tell me about it.</p>
     <a class="contact-email" href={`mailto:${contact.email}`}>{contact.email} <span aria-hidden="true">↗</span></a>
     <div class="contact-socials">
       <a class="text-link" href={contact.linkedin} target="_blank" rel="noopener noreferrer">LinkedIn <span aria-hidden="true">↗</span></a>
       <a class="text-link" href={contact.github} target="_blank" rel="noopener noreferrer">GitHub <span aria-hidden="true">↗</span></a>
     </div>
-    <a class="contact-phone" href={`tel:${contact.phone.replace(/\s/g, '')}`}>{contact.phone}</a>
+    <div class="contact-direct"><span class="mono">Direct line</span><a class="contact-phone" href={`tel:${contact.phone.replace(/\s/g, '')}`}>{contact.phone}</a></div>
+    <p class="contact-location mono">Kerala, India <span aria-hidden="true">·</span> Open to full-time roles</p>
   </div>
   <div class="letter-card" data-reveal>
-    <div class="letter-heading"><span class="mono">Send an inquiry</span></div>
+    <div class="letter-heading"><span class="mono">A note, to begin.</span><span class="letter-stamp" aria-hidden="true">Personal<br />correspondence</span></div>
+    <div class="letter-recipient"><span>To</span><p>Jayakrishnan P S<br /><a href={`mailto:${contact.email}`}>{contact.email}</a></p></div>
     <ContactForm client:load />
   </div>
 </section>

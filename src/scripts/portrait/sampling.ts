@@ -4,9 +4,6 @@ export async function samplePortrait(image: HTMLImageElement, count: number) {
   canvas.width = canvas.height = size;
   const context = canvas.getContext('2d', { willReadFrequently: true });
   if (!context) throw new Error('Portrait sampling is unavailable');
-  context.beginPath();
-  context.arc(size / 2, size / 2, size / 2, 0, Math.PI * 2);
-  context.clip();
   context.drawImage(image, 0, 0, size, size);
   const { data } = context.getImageData(0, 0, size, size);
   const luminance = new Float32Array(size * size);
@@ -22,7 +19,8 @@ export async function samplePortrait(image: HTMLImageElement, count: number) {
     return state / 4294967296;
   };
   for (let i = 0; i < luminance.length; i++) {
-    luminance[i] = (data[i * 4] * 0.299 + data[i * 4 + 1] * 0.587 + data[i * 4 + 2] * 0.114) / 255;
+    const gray = (data[i * 4] * 0.2126 + data[i * 4 + 1] * 0.7152 + data[i * 4 + 2] * 0.0722) / 255;
+    luminance[i] = Math.max(0, Math.min(1, (gray - 0.5) * 1.05 + 0.5));
   }
   let total = 0;
   for (let i = 0; i < distribution.length; i++) {
@@ -44,7 +42,8 @@ export async function samplePortrait(image: HTMLImageElement, count: number) {
     const offset = i * 3;
     position[offset] = ((low % size) + random()) / size - 0.5;
     position[offset + 1] = (Math.floor(low / size) + random()) / size - 0.5;
-    for (let channel = 0; channel < 3; channel++) color[offset + channel] = linear(data[low * 4 + channel] / 255);
+    const tone = linear(luminance[low]);
+    for (let channel = 0; channel < 3; channel++) color[offset + channel] = tone;
     target[offset] = random() - 0.5;
     target[offset + 1] = (random() + random() - 1) * 0.5;
     seed[offset] = random() * 2 - 1;

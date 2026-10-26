@@ -27,7 +27,6 @@ export async function mountPortrait(image: HTMLImageElement, title: HTMLElement,
   const uniforms = {
     uViewport: { value: new Vector2() },
     uPortrait: { value: new Vector4() },
-    uLine: { value: new Vector4() },
     uAccent: { value: new Color(getComputedStyle(document.documentElement).getPropertyValue('--accent').trim()) },
     uMorph: { value: 0 },
     uTravel: { value: 0 },
@@ -54,13 +53,13 @@ export async function mountPortrait(image: HTMLImageElement, title: HTMLElement,
   let frame = 0;
   let previous = 0;
   let progress = window.scrollY;
+  let releaseStart = 0;
   let morphEnd = 1;
   let travelStart = 1;
   let travelEnd = 1;
   let fadeStart = 1;
   let fadeEnd = 1;
   let photo = new DOMRect();
-  let line = new DOMRect();
   let needsLayout = true;
   let slowFrames = 0;
   let severeFrames = 0;
@@ -87,12 +86,12 @@ export async function mountPortrait(image: HTMLImageElement, title: HTMLElement,
   const measure = () => {
     const imageRect = image.getBoundingClientRect();
     const lineRect = underline.getBoundingClientRect();
-    const titleRect = title.getBoundingClientRect();
-    const headerHeight = document.querySelector('header')?.getBoundingClientRect().height ?? 86;
+    const headerHeight = document.querySelector('.site-header')?.getBoundingClientRect().height ?? 64;
     photo = new DOMRect(imageRect.x + scrollX, imageRect.y + scrollY, imageRect.width, imageRect.height);
-    line = new DOMRect(lineRect.x + scrollX, lineRect.y + scrollY, lineRect.width, lineRect.height);
-    morphEnd = Math.max(90, (titleRect.top + scrollY - headerHeight) * 0.62);
-    travelStart = morphEnd + Math.max(45, titleRect.height * 0.45);
+    releaseStart = Math.max(0, lineRect.bottom + scrollY - headerHeight + 18, photo.y + photo.height * 0.5 - innerHeight * 0.42);
+    const releaseDistance = Math.max(140, Math.min(240, photo.height * 0.72));
+    morphEnd = releaseStart + releaseDistance;
+    travelStart = releaseStart + releaseDistance * 0.36;
     const contactTop = (contact?.getBoundingClientRect().top ?? document.body.scrollHeight) + scrollY;
     fadeStart = Math.max(travelStart + innerHeight, contactTop - innerHeight * 0.85);
     fadeEnd = fadeStart + innerHeight * 0.5;
@@ -119,7 +118,7 @@ export async function mountPortrait(image: HTMLImageElement, title: HTMLElement,
     if (needsLayout) measure();
     progress += (scrollY - progress) * (1 - Math.exp(-Math.min(elapsed, 64) / 110));
     if (Math.abs(scrollY - progress) < 0.15) progress = scrollY;
-    const morph = clamp(progress / morphEnd);
+    const morph = smooth(releaseStart, morphEnd, progress);
     const travel = smooth(travelStart, travelStart + innerHeight * 0.55, progress);
     const phase = clamp((progress - travelStart) / (travelEnd - travelStart));
     const fade = smooth(fadeStart, fadeEnd, progress);
@@ -129,7 +128,7 @@ export async function mountPortrait(image: HTMLImageElement, title: HTMLElement,
     const wave = phase * Math.PI * 4;
     uniforms.uFlow.value.set(
       width * 0.5 - Math.sin(turn) * amplitude,
-      innerHeight * (0.52 + Math.sin(wave) * 0.1),
+      innerHeight * (0.64 + Math.sin(wave) * 0.04),
       amplitude,
       phase,
     );
@@ -144,12 +143,11 @@ export async function mountPortrait(image: HTMLImageElement, title: HTMLElement,
     const pointerMoving = Math.abs(pointer.x - cursor.x) + Math.abs(pointer.y - cursor.y) > 0.25
       || Math.abs(pointerActive - cursor.w) > 0.001;
     if (!pointerMoving) cursor.set(pointer.x, pointer.y, cursor.z, pointerActive);
-    uniforms.uPortrait.value.set(photo.x + photo.width / 2 - scrollX, photo.y + photo.height / 2 - scrollY, photo.width, photo.height);
-    uniforms.uLine.value.set(line.x + line.width / 2 - scrollX, line.y + line.height / 2 - scrollY, line.width, line.height);
-    const dissolve = smooth(0, 0.18, morph);
+    uniforms.uPortrait.value.set(photo.x + photo.width / 2 - scrollX, photo.y + photo.height / 2 - Math.min(scrollY, releaseStart), photo.width, photo.height);
+    const dissolve = smooth(0, 0.32, morph);
     image.style.opacity = String(1 - dissolve);
-    stage.style.opacity = String(smooth(0, 0.08, morph));
-    stage.hidden = progress === 0 || fade === 1;
+    stage.style.opacity = String(smooth(0, 0.12, morph));
+    stage.hidden = morph === 0 || fade === 1;
     try {
       if (!stage.hidden) renderer.render(scene, camera);
     } catch {

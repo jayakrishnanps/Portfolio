@@ -4,7 +4,6 @@ export const vertexShader = `
   attribute vec3 aSeed;
   uniform vec2 uViewport;
   uniform vec4 uPortrait;
-  uniform vec4 uLine;
   uniform vec3 uAccent;
   uniform float uMorph;
   uniform float uTravel;
@@ -21,10 +20,7 @@ export const vertexShader = `
   void main() {
     float morph = smoothstep(aSeed.z * 0.12, 0.88 + aSeed.z * 0.12, uMorph);
     vec2 photo = uPortrait.xy + position.xy * uPortrait.zw;
-    vec2 line = uLine.xy + aTarget.xy * uLine.zw;
-    vec2 p = mix(photo, line, morph);
-    float cloud = sin(morph * 3.14159265);
-    p += vec2(aSeed.x * min(uPortrait.z, 150.0), aSeed.y * 75.0) * cloud;
+    vec2 p = photo + vec2(aSeed.x * min(uPortrait.z * 0.32, 90.0), 35.0 + abs(aSeed.y) * 35.0) * morph;
     float turn = uFlow.w * 9.42477796;
     float wave = uFlow.w * 12.56637061;
     float flow = uFlow.w * 48.0;
@@ -50,6 +46,7 @@ export const vertexShader = `
       cos(flow * 0.8 + aSeed.x * 4.0 - lane * 3.0)
     ) * bend * uSpread.y * 0.16;
     vec2 swimming = uFlow.xy + drift + spread;
+    swimming.y = max(swimming.y, p.y + 40.0);
     p = mix(p, swimming, uTravel);
     float interaction = smoothstep(0.18, 0.65, uMorph) * uPointer.w;
     vec2 delta = p - uPointer.xy;
@@ -62,9 +59,10 @@ export const vertexShader = `
     p += direction * push * influence * interaction;
     gl_Position = vec4(p.x / uViewport.x * 2.0 - 1.0, 1.0 - p.y / uViewport.y * 2.0, 0.0, 1.0);
     gl_PointSize = mix(uSize, 1.65, morph) * uDpr;
-    vColor = mix(aColor, uAccent, smoothstep(0.02, 0.65, morph));
+    vColor = uAccent;
     float member = 1.0 - smoothstep(uDensity * 0.85, uDensity, aSeed.z);
-    float opacity = mix(mix(0.92, 0.12, morph), 0.56 * member, uTravel);
+    float ink = 1.0 - dot(aColor, vec3(0.2126, 0.7152, 0.0722));
+    float opacity = mix(mix(0.16, 0.88, ink), 0.56 * member, uTravel);
     vAlpha = opacity * (1.0 - uFade);
   }
 `;

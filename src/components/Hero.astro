@@ -1,31 +1,58 @@
 ---
 import { contact } from '../data/contact';
 import Portrait from './Portrait.astro';
+import CutLetters from './CutLetters.astro';
 ---
 <section id="hero" class="hero" aria-labelledby="hero-title">
-  <div class="hero-meta" data-enter>
-    <span class="mono hero-location">Kerala, India</span>
+  <div class="edition-meta">
+    <span>Vol. 01 <span aria-hidden="true">—</span> Personal edition</span>
+    <span class="edition-location">Kerala, India · Independent developer</span>
+    <span>Web / Desktop / Mobile</span>
   </div>
-  <Portrait />
-  <h1 id="hero-title" class="hero-name"><span>Jayakrishnan</span> <i>P S</i><span class="portrait-underline" aria-hidden="true"></span></h1>
-  <div class="hero-main" data-enter>
-    <p class="hero-statement">React and Next.js interfaces backed by Django APIs and database-driven workflows.</p>
-    <p class="hero-description">Built learning, inventory, and clinical applications with live video, usage-based recommendations, and document-to-test generation.</p>
-    <div class="hero-links">
-      <a href="#projects" class="primary-link">View projects <span class="link-icon" aria-hidden="true">↘</span></a>
-      <a href={`mailto:${contact.email}`} class="primary-link secondary-link">Email me <span class="link-icon" aria-hidden="true">↗</span></a>
-    </div>
+  <div class="masthead">
+    <p class="masthead-overline">The work & words of</p>
+    <h1 id="hero-title" class="hero-name"><span>Jayakrishnan</span> <span class="name-initials">P S</span><span class="portrait-underline" aria-hidden="true"></span></h1>
+    <div class="masthead-deck"><span>Full-stack developer</span><span class="masthead-star" aria-hidden="true">✳</span><span>Interfaces, systems & everything between</span></div>
   </div>
-  <aside class="hero-aside" aria-labelledby="experience-title" data-enter>
-    <div class="experience-heading"><h2 id="experience-title">Experience</h2><span class="mono">2025 — 26</span></div>
-    <p class="experience-role">Software Engineer &<br />Generative AI Intern</p>
-    <p class="experience-date mono">Jun 2025 – Feb 2026</p>
-    <p class="experience-description">Developed backend services and REST APIs for full-stack and generative AI applications. Delivered product features from concept to production.</p>
-    <p class="experience-stack">Python <span>/</span> Django <span>/</span> JavaScript</p>
+  <div class="front-page">
+    <article class="lead-story">
+      <p class="eyebrow"><span class="ink-square" aria-hidden="true"></span> The front-page story</p>
+      <h2 class="lead-headline" aria-label="Behind every screen, a system that works.">Behind every<br /> <CutLetters text="screen," /> a system<br /> that <CutLetters text="works." variant="ink" /></h2>
+      <p class="lead-deck">From the first interaction to the last database query. I build the parts you see, and the ones you depend on.</p>
+      <div class="story-byline"><span>By Jayakrishnan P S</span><span>Developer · MCA, 2025</span></div>
+      <div class="lead-columns">
+        <p class="drop-cap">My work connects React and Next.js interfaces with Django APIs and database-driven workflows. The interesting part is where those pieces meet.</p>
+        <p>I’ve built live learning tools, clinical workflows, and desktop applications. Each project below is a closer look at the decisions behind the screen.</p>
+      </div>
+      <div class="hero-links">
+        <a href="#projects" class="primary-link">Read the work <span class="link-icon" aria-hidden="true">↓</span></a>
+        <a href={`mailto:${contact.email}`} class="text-link">Write to me <span aria-hidden="true">↗</span></a>
+      </div>
+    </article>
+    <aside class="profile-column" aria-label="Developer profile">
+      <div class="portrait-clipping">
+        <span class="photo-tape" aria-hidden="true"></span>
+        <span class="photo-pin" aria-hidden="true"></span>
+        <Portrait />
+        <div class="portrait-caption"><span>Fig. 01 — The developer</span><span>J / PS</span></div>
+      </div>
+      <div class="particulars">
+        <h2>The particulars</h2>
+        <dl><div><dt>Based in</dt><dd>Kerala, India</dd></div><div><dt>Works across</dt><dd>Web & applications</dd></div><div><dt>Core tools</dt><dd>React · Django · Python</dd></div></dl>
+      </div>
+      <a class="availability-stamp" href="#contact"><span>Open to work</span><small>Full-time engineering roles</small></a>
+    </aside>
+  </div>
+  <aside class="experience-strip" aria-labelledby="experience-title">
+    <div class="experience-label"><span class="eyebrow">From the field</span><h2 id="experience-title">Experience</h2></div>
+    <div class="experience-position"><h3>Software Engineer &<br />Generative AI Intern</h3><p class="mono">Jun 2025 — Feb 2026</p></div>
+    <p class="experience-description">Developed backend services and REST APIs for full-stack and generative AI applications, taking features from concept to production.</p>
+    <p class="experience-stack">Python<br />Django<br />JavaScript</p>
   </aside>
-  <div class="hero-colophon" data-enter>
-    <p class="availability"><span class="status-dot" aria-hidden="true"></span> Available for full-time engineering roles</p>
-    <span class="mono">MCA · 2025</span>
-    <a href="#projects" class="section-jump" aria-label="Scroll to projects"><span aria-hidden="true">↓</span></a>
+  <div class="edition-index" aria-label="In this edition">
+    <span class="edition-index-title">In this edition</span>
+    <a href="#projects"><span>Selected work</span><span class="mono">01</span></a>
+    <a href="#skills"><span>Technical index</span><span class="mono">02</span></a>
+    <a href="#contact"><span>Correspondence</span><span class="mono">03</span></a>
   </div>
 </section>
