@@ -36,3 +36,4 @@ pnpm-debug.log*
 dist
 tmp
 temp
+/frontend.txt

@@ -19,8 +19,8 @@
 .project-status { white-space: nowrap; }
 .status-development { color: var(--accent); }
 .lead-story-label { margin-top: 27px; font: 600 .8rem var(--sans); text-transform: uppercase; letter-spacing: .19em; color: var(--accent); }
-.project-content h3 { font: 600 clamp(2.4rem, 4vw, 3.8rem)/1.05 var(--serif); letter-spacing: -.05em; margin: 16px 0 0; max-width: 560px; text-wrap: balance; }
-.project-card-featured h3 { font-size: clamp(3.8rem, 7vw, 6rem); margin-top: 5px; letter-spacing: -.07em; }
+.project-content h3 { font: 600 clamp(2.1rem, 3.4vw, 3rem)/1.12 var(--serif); letter-spacing: -.025em; margin: 16px 0 0; max-width: 560px; text-wrap: balance; overflow-wrap: anywhere; }
+.project-card-featured h3 { font-size: clamp(3.2rem, 6vw, 4.8rem); margin-top: 5px; letter-spacing: -.025em; }
 .project-deck { margin-top: 14px; font: italic 400 clamp(1.5rem, 2.7vw, 2.3rem)/1.16 var(--serif); letter-spacing: -.035em; }
 .project-description { color: var(--text-muted); font: 400 1rem/1.75 var(--body); margin-top: 18px; max-width: 570px; overflow-wrap: anywhere; }
 .project-technologies { display: flex; flex-wrap: wrap; gap: 4px 10px; margin-top: 17px; }
@@ -56,7 +56,7 @@
 .additional-projects { grid-template-columns: 1fr; gap: 0; }
 .additional-projects .project-card { display: grid; grid-template-columns: minmax(0, .9fr) minmax(0, 1.1fr); gap: 36px; align-items: start; padding: 35px 0; border-top: 1px solid var(--border); }
 .additional-projects .project-content { padding-top: 0; }
-.additional-projects .project-content h3 { font-size: clamp(2.3rem, 4vw, 3.4rem); }
+.additional-projects .project-content h3 { font-size: clamp(2rem, 3.4vw, 3rem); }
 .project-visual { --plate-ink: var(--text); --plate-muted: var(--text-muted); container-type: inline-size; position: relative; isolation: isolate; display: flex; flex-direction: column; justify-content: space-between; gap: 20px; min-width: 0; min-height: 345px; margin: 0; padding: 26px 22px 22px; border: 1px solid #968d7c; background: var(--surface); color: var(--plate-ink); box-shadow: 2px 3px 0 #201e1a38, 5px 7px 8px #201e1a0d; }
 .project-visual::before { content: ''; position: absolute; z-index: -1; inset: 5px -3px -5px 4px; border: 1px solid #b7ad9c; background: #e7dfcd; transform: rotate(-.7deg); box-shadow: 1px 2px 0 #201e1a0c; pointer-events: none; }
 .project-visual::after { content: ''; position: absolute; left: 0; right: 0; bottom: -1px; height: 5px; background: var(--surface); clip-path: polygon(0 0, 100% 0, 100% 50%, 96% 80%, 91% 30%, 87% 90%, 81% 45%, 75% 100%, 70% 40%, 64% 85%, 58% 30%, 51% 90%, 46% 50%, 39% 95%, 33% 35%, 27% 80%, 21% 30%, 14% 90%, 8% 45%, 3% 80%, 0 40%); pointer-events: none; }
@@ -150,7 +150,7 @@
   .primary-projects > .project-card:nth-child(3)::before { left: -17px; }
   .project-card-featured { grid-template-columns: minmax(0, .85fr) minmax(0, 1.1fr); gap: 30px; }
   .project-card-featured .project-visual { min-height: 430px; }
-  .project-card-featured h3 { font-size: 4.2rem; }
+  .project-card-featured h3 { font-size: 3.8rem; }
   .project-deck { font-size: 1.7rem; }
 }
 @media (max-width: 700px) {
@@ -161,8 +161,8 @@
   .visual-learning, .visual-ascent { transform: none; }
   .primary-projects > .project-card:nth-child(3)::before { display: none; }
   .primary-projects > .project-card:not(.project-card-featured) { padding-top: 20px; border-top: 1px solid var(--text); }
-  .project-content h3 { font-size: 3rem; }
-  .project-card-featured h3 { font-size: clamp(3.5rem, 16vw, 5rem); }
+  .project-content h3 { font-size: 2.6rem; }
+  .project-card-featured h3 { font-size: clamp(2.8rem, 12vw, 3.3rem); }
   .project-card-featured .project-description { max-width: 38rem; }
   .project-card-featured .lead-story-label { margin-top: 20px; }
   .project-visual { min-height: 330px; }
@@ -181,7 +181,7 @@
   .more-projects > summary { gap: 10px; flex-wrap: wrap; }
   .more-projects > summary .disclosure-icon { flex-basis: 22px; }
   .more-count { font-size: .56rem; }
-  .project-content h3 { font-size: 2.65rem; }
+  .project-content h3 { font-size: 2.3rem; }
 }
 @media (prefers-reduced-motion: no-preference) {
   .project-disclosure[open] .project-details { animation: detail-enter 220ms var(--ease); }
