@@ -1,22 +1,19 @@
 ---
 import { getCollection } from 'astro:content';
 import ProjectList from '../islands/ProjectList';
-
 const projectOrder = ['orbit-ai', 'tutorva', 'ascent', 'athena', 'product-management-system', 'hospital-management-system'];
 const position = (slug: string) => {
   const index = projectOrder.indexOf(slug);
   return index < 0 ? Number.MAX_SAFE_INTEGER : index;
 };
 const projects = (await getCollection('projects')).sort((a, b) => position(a.slug) - position(b.slug) || a.data.title.localeCompare(b.data.title));
+const years = projects.flatMap((project) => (project.data.year?.match(/\d{4}/g) ?? []).map(Number));
+const yearRange = years.length ? `${Math.min(...years)} — ${Math.max(...years)}` : '';
 ---
-<section id="projects" class="section work-section container" aria-labelledby="work-title">
-  <div class="section-header" data-reveal>
-    <div>
-      <span class="section-tag">Portfolio</span>
-      <h2 id="work-title">Featured Projects</h2>
-      <p>A selection of web platforms, desktop software, and mobile applications I've engineered and shipped.</p>
-    </div>
-    <span class="project-count-badge mono">{projects.length} Projects on Record</span>
+<section id="projects" class="folio-section work-section" aria-labelledby="work-title">
+  <div class="section-heading" data-reveal>
+    <h2 id="work-title">Projects</h2>
+    <span class="section-meta mono">{yearRange}</span>
   </div>
-  <ProjectList client:load projects={projects.map((project) => project.data)} />
+  <ProjectList projects={projects.map((project) => project.data)} />
 </section>

@@ -2,91 +2,30 @@
 import { contact } from '../data/contact';
 import Portrait from './Portrait.astro';
 ---
-<section id="hero" class="hero container" aria-labelledby="hero-title">
-  <div class="hero-layout">
-    <div class="hero-text">
-      <div class="hero-status-pill" data-enter>
-        <span class="status-indicator">
-          <span class="status-dot"></span>
-          <span class="status-pulse"></span>
-        </span>
-        <span>Available for full-time engineering roles</span>
-      </div>
-      
-      <h1 id="hero-title" class="hero-name" data-enter>Jayakrishnan P S</h1>
-      <p class="hero-role accent-gradient-text" data-enter>Full-Stack Engineer</p>
-      
-      <p class="hero-bio" data-enter>
-        I build web applications and developer tools with clean architecture and practical ergonomics. Specialized in React, TypeScript, Python, and Django — from responsive interfaces to scalable backend APIs and desktop applications.
-      </p>
-
-      <div class="hero-actions" data-enter>
-        <a href="#projects" class="btn-primary">
-          View Projects
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-            <line x1="12" y1="5" x2="12" y2="19"></line>
-            <polyline points="19 12 12 19 5 12"></polyline>
-          </svg>
-        </a>
-        <a href="#contact" class="btn-secondary">
-          Get in Touch
-        </a>
-        <a href={contact.github} target="_blank" rel="noopener noreferrer" class="btn-secondary" aria-label="GitHub profile">
-          GitHub ↗
-        </a>
-      </div>
-    </div>
-
-    <div class="hero-portrait-col" data-enter>
-      <div class="hero-portrait-frame">
-        <Portrait />
-      </div>
+<section id="hero" class="hero" aria-labelledby="hero-title">
+  <div class="hero-meta" data-enter>
+    <span class="mono hero-location">Kerala, India</span>
+  </div>
+  <Portrait />
+  <h1 id="hero-title" class="hero-name"><span>Jayakrishnan</span> <i>P S</i><span class="portrait-underline" aria-hidden="true"></span></h1>
+  <div class="hero-main" data-enter>
+    <p class="hero-statement">React and Next.js interfaces backed by Django APIs and database-driven workflows.</p>
+    <p class="hero-description">Built learning, inventory, and clinical applications with live video, usage-based recommendations, and document-to-test generation.</p>
+    <div class="hero-links">
+      <a href="#projects" class="primary-link">View projects <span class="link-icon" aria-hidden="true">↘</span></a>
+      <a href={`mailto:${contact.email}`} class="primary-link secondary-link">Email me <span class="link-icon" aria-hidden="true">↗</span></a>
     </div>
   </div>
-
-  <div class="hero-meta-grid" data-enter>
-    <div class="meta-card">
-      <span class="meta-card-label">Primary Stack</span>
-      <span class="meta-card-value">React · Django · TypeScript · Python</span>
-    </div>
-    <div class="meta-card">
-      <span class="meta-card-label">Focus</span>
-      <span class="meta-card-value">Web & Desktop Applications</span>
-    </div>
-    <div class="meta-card">
-      <span class="meta-card-label">Education</span>
-      <span class="meta-card-value">Master of Computer Applications (2025)</span>
-    </div>
-    <div class="meta-card">
-      <span class="meta-card-label">Location</span>
-      <span class="meta-card-value">Kerala, India</span>
-    </div>
-  </div>
-
-  <div id="experience" class="experience-block" data-reveal>
-    <div class="experience-block-header">
-      <h2>Work Experience</h2>
-      <span class="section-tag" style="margin: 0;">Timeline</span>
-    </div>
-    <div class="experience-item">
-      <div class="experience-timeline">
-        <span class="experience-badge">Internship</span>
-        <span class="experience-date">Jun 2025 — Feb 2026</span>
-      </div>
-      <div class="experience-details">
-        <h3>Software Engineer & Generative AI Intern</h3>
-        <p>
-          Architected and developed backend services and REST APIs for full-stack and generative AI products. Engineered streaming pipelines, database schemas, and robust endpoints for web and desktop clients, taking features from concept to production.
-        </p>
-        <div class="experience-tags">
-          <span class="tag-pill">Python</span>
-          <span class="tag-pill">Django</span>
-          <span class="tag-pill">REST APIs</span>
-          <span class="tag-pill">JavaScript</span>
-          <span class="tag-pill">LLM Streaming</span>
-          <span class="tag-pill">Full-Stack</span>
-        </div>
-      </div>
-    </div>
+  <aside class="hero-aside" aria-labelledby="experience-title" data-enter>
+    <div class="experience-heading"><h2 id="experience-title">Experience</h2><span class="mono">2025 — 26</span></div>
+    <p class="experience-role">Software Engineer &<br />Generative AI Intern</p>
+    <p class="experience-date mono">Jun 2025 – Feb 2026</p>
+    <p class="experience-description">Developed backend services and REST APIs for full-stack and generative AI applications. Delivered product features from concept to production.</p>
+    <p class="experience-stack">Python <span>/</span> Django <span>/</span> JavaScript</p>
+  </aside>
+  <div class="hero-colophon" data-enter>
+    <p class="availability"><span class="status-dot" aria-hidden="true"></span> Available for full-time engineering roles</p>
+    <span class="mono">MCA · 2025</span>
+    <a href="#projects" class="section-jump" aria-label="Scroll to projects"><span aria-hidden="true">↓</span></a>
   </div>
 </section>

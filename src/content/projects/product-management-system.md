@@ -1,19 +1,18 @@
 ---
 title: "Product Management System"
-subtitle: "Inventory Intelligence Platform"
-description: "Inventory operations system with consumption pattern analysis and automated restock suggestions."
-longDescription: "Developed a full-stack inventory management web application using Next.js, Node.js, Express, and MongoDB. Engineered data models and aggregation queries to analyze stock turnover and historical consumption velocity, providing automated restock warnings and purchasing suggestions for small-business operators."
-tech: ["Next.js", "React", "Node.js", "Express.js", "MongoDB", "REST APIs"]
+subtitle: "Inventory Management Platform"
+description: "Inventory management with usage-based product recommendations for small-business decisions."
+longDescription: "Developed an inventory management application using Next.js, Node.js, Express, and MongoDB. Implemented product recommendations based on usage patterns to support small-business inventory decisions."
+tech: ["Next.js", "Node.js", "Express", "MongoDB"]
 features:
-  - "CRUD inventory operations with categorized catalog tracking"
-  - "Consumption velocity analytics and turnover monitoring"
-  - "Data-driven restock alerts to minimize stockouts"
-  - "Responsive management dashboard"
+  - "Product inventory management"
+  - "Usage-pattern analysis"
+  - "Product recommendations for inventory decisions"
 role: "Full-Stack Developer"
 year: "2024"
-category: "Full-Stack Web"
+category: "Full-Stack"
 links:
   github: "https://github.com/jayakrishnanps"
 ---
 
-Inventory management platform with usage-based replenishment recommendations. Next.js, Node.js, Express, and MongoDB.
+Developed a Next.js inventory application with Node.js, Express, and MongoDB. Implemented usage-based product recommendations to support small-business decisions.

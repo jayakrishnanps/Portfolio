@@ -1,22 +1,23 @@
 ---
 title: "Athena"
-description: "A source-grounded research workspace in active development, combining a Next.js interface with a Django REST backend."
-longDescription: "Building a focused research workspace designed for document ingestion, source indexing, and grounded question answering. Currently implemented with a Next.js frontend and a Django REST API scaffold, with ongoing work on semantic document chunking, vector indexing, and citation-backed question synthesis."
+description: "NotebookLM-style research workspace in development, with a Next.js interface and Django API foundation."
+longDescription: "Developing a source-based research workspace for organizing documents and asking questions against them. The current repository contains a Next.js landing interface and a Django REST API scaffold with a health-check endpoint. Document ingestion, source-grounded answers, and notebook workflows are planned; they are not implemented yet."
 tech: ["Next.js", "React", "TypeScript", "Python", "Django REST Framework"]
 features:
-  - "Next.js frontend application structure"
-  - "Django REST API scaffold and modular service layer"
-  - "Integrated client-to-server health checking"
+  - "Next.js landing interface"
+  - "Django REST API scaffold"
+  - "Frontend-to-backend health check"
 plannedFeatures:
-  - "Multi-format document ingestion and chunk indexing"
-  - "Source-grounded Q&A with verifiable inline citations"
-  - "Persistent research notebooks and automated synthesis"
+  - "Document uploads and source indexing"
+  - "Source-grounded questions and answers"
+  - "Research notebooks and summaries"
+  - "Audio overviews"
 role: "Full-Stack Developer"
 year: "2026"
-category: "Web / Full-Stack"
+category: "AI research workspace"
 status: "In development"
 links:
   github: "https://github.com/jayakrishnanps/Athena"
 ---
 
-Source-grounded research workspace prototype pairing Next.js with Django REST Framework.
+Research-workspace prototype. Repository activity began in June 2026; this is not a release date. Current implementation is limited to the frontend landing interface and backend scaffold.
