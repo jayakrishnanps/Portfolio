@@ -2,12 +2,11 @@
 import SkillsFilter from '../islands/SkillsFilter';
 import { skills } from '../data/skills';
 ---
-<section id="skills" class="folio-section toolkit-section" aria-labelledby="toolkit-title">
-  <div class="section-heading" data-reveal>
-    <div class="desk-label"><span>02</span><p>The technical desk</p></div>
-    <h2 id="toolkit-title">Tools of<br /><i>the trade.</i></h2>
-    <p class="toolkit-intro">The languages, frameworks, and systems behind the work, from the browser to the database.</p>
-    <span class="toolkit-footnote mono">15 entries / 5 categories</span>
+<section id="skills" class="section skills-section container" aria-labelledby="skills-title">
+  <div class="section-header" data-reveal>
+    <span class="section-tag">Core Competencies</span>
+    <h2 id="skills-title">Technical Skills</h2>
+    <p>Languages, libraries, frameworks, and developer tooling I use daily to build production software.</p>
   </div>
   <SkillsFilter client:load skills={skills} />
 </section>

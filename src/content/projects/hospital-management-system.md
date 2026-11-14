@@ -1,19 +1,19 @@
 ---
 title: "Hospital Management System"
-subtitle: "Clinical Operations Platform"
-description: "Django application for appointments, patient records, medications, and treatments."
-longDescription: "Built a Python/Django application for daily clinical operations. Implemented appointment management and patient records covering medications and treatments, with real-time data updates for doctors and staff."
-tech: ["Python", "Django"]
+subtitle: "Clinical Operations System"
+description: "Clinical administration application managing patient admissions, doctor schedules, treatment histories, and medication tracking."
+longDescription: "Engineered a Python/Django healthcare administration application for daily clinical operations. Implemented patient record management with linked medical histories, outpatient appointment scheduling, and prescription tracking, providing staff with real-time synchronized clinical records."
+tech: ["Python", "Django", "SQLite / PostgreSQL", "Bootstrap", "HTML5"]
 features:
-  - "Appointment management"
-  - "Patient records"
-  - "Medication and treatment tracking"
-  - "Real-time data updates for clinical staff"
+  - "Outpatient appointment scheduling and doctor allocation"
+  - "Comprehensive patient electronic medical records (EMR)"
+  - "Prescription, medication, and treatment logging"
+  - "Role-based administrative dashboards for doctors and clinic staff"
 role: "Full-Stack Developer"
 year: "2023"
-category: "Full-Stack"
+category: "Full-Stack Web"
 links:
   github: "https://github.com/jayakrishnanps"
 ---
 
-Built a Python/Django application for clinical appointment management, patient records, and medication and treatment tracking. Supported real-time data updates for doctors and staff.
+Django healthcare application managing clinical appointments, patient medical records, and medication tracking.
